@@ -1,0 +1,23 @@
+.assistance-page{
+padding-bottom: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 8rem;
+    background-color: rgb(172, 225, 167,0.5);
+}
+
+.title-assistance-page{
+    font-size: 2rem;
+}
+
+.videos-container{
+    gap:3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.title-video-container{
+    font-size: 1.3rem;
+    font-weight: 600;
+}

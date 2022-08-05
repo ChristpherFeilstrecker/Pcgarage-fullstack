@@ -1,0 +1,55 @@
+@import "../../../../StyledGlobalColor.css";
+
+
+#intro-section-3 {
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    overflow: hidden;
+    background-image: url("../../../../images/new-york-1920x500.jpg") ;
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+
+.container-section3{
+    background-color: rgb(151, 148, 148,0.5);
+    width: 90%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box-container-section3{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    
+}
+
+.text-container-section3{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+}
+
+.margin-top{
+    margin-top: 2rem;
+}
+
+.title-text-section3{
+    color: white;
+    text-shadow: 0.1em 0.1em 0.2em black
+}
+
+.box-container-video-section3{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}

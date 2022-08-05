@@ -1,0 +1,66 @@
+.body-subsection3{
+    min-height: 80vh;
+    width: 90vw;
+    display: flex;
+    justify-content: flex-start;
+    
+}
+
+.title-subsection3{
+    font-size: 2rem;
+}
+
+.services-container-subsection3{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
+.title-container-subsection3{
+    display: flex;
+margin-top: 2rem;
+background-color: green;
+color: white;
+width: 15rem;
+padding: 0.5rem;
+}
+
+.title-container-subsection3:hover{
+    cursor: pointer;
+}
+
+.service-subsection3{
+    width: 15rem;
+    padding: 0.5rem;
+    border-bottom: 1px solid rgb(98, 98, 98);
+    display: flex;
+justify-content: space-between;
+}
+
+.service-type-subsection3:hover, .option-service-subsection3:hover, .title-container-subsection3:hover{
+color: rgb(48, 91, 48);
+cursor: pointer;
+}
+
+.options-service-subsection2{
+    display: flex;
+    gap: 1rem;
+}
+
+.container-to-add{
+    margin: 3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-Subsection3{
+    display: flex;
+    flex-direction: column;
+    width: 25rem;
+    align-items: center;
+}
+
+.input-Subsection3{
+    width: 80%;
+}

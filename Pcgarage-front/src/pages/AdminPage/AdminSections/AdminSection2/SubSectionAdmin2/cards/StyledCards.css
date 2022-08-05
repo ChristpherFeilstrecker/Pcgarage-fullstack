@@ -1,0 +1,96 @@
+.list-product-card{
+   padding: 2rem;
+    
+}
+
+.container-list-to-edit{
+    margin-top: 2rem;
+}
+
+.title-list-to-edit{
+    display: flex;
+    width: 25rem;
+    background-color: rgb(110, 236, 98);
+    padding-left: 0.5rem;
+}
+
+.title-list-to-edit-or-delete{
+    display: flex;
+    width: 25rem;
+    background-color: rgb(110, 236, 98);
+    padding-left: 0.5rem;
+    justify-content: space-between;
+}
+
+.body-position-to-edit{
+    width: 25rem;
+   border-bottom: 0.1rem solid grey;
+   display: flex;
+}
+
+.body-position-to-edit-or-delete{
+    width: 25rem;
+    height: 2rem;
+   border-bottom: 0.1rem solid grey;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.position-to-edit{
+    width: 4rem;
+    display: flex;
+    justify-content: center;
+}
+.title-position-to-edit{
+    margin-right: 3rem;
+}
+.position-name-edit-or-delete{
+    padding-left: 1rem;
+}
+
+.position-name-edit:hover, .position-name-edit-or-delete:hover{
+    cursor: pointer;
+    color: green;
+}
+
+.button-delete{
+    background-color: red;
+    padding: 0 0.3rem;
+    color: white;
+    border-radius: 0.2rem;
+}
+
+.button-delete:hover{
+    cursor: pointer;
+background-color: rgb(168, 35, 35);
+}
+.actual-img{
+    max-height: 6rem;
+}
+
+.container-img{
+    display: flex;
+    align-items: center;
+}
+
+.info-actual{
+    margin-left: 3rem;
+    margin-top: 1rem;
+}
+
+.product-to-edit{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-Subsection4{
+    margin-left: 2rem;
+
+}
+
+.btn-save{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

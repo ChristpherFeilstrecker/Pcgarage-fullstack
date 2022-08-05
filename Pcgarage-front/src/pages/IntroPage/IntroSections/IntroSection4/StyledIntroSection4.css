@@ -1,0 +1,201 @@
+@import "../../../../StyledGlobalColor.css";
+
+#intro-section-4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container-box{
+    padding: 4rem 0;
+}
+
+.title-section-4{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container-section-4 {
+    width: 80vw;
+    padding: 3vw 5vw;
+    box-shadow: 0 0 1em var(--box-shadow);
+}
+
+.form-personal-data-container-section-4 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2vw;
+
+}
+
+input {
+    width: 32%;
+    padding: 1vw;
+    border-width:thin;
+    border-style: solid;
+    border-color: var(--border);
+}
+
+.form-message-container-section-4{
+    display: flex;
+    align-items: flex-start;
+    height: 10vw;
+    
+}
+.form-message-container-section-4 input{
+    display: flex;
+    width: 100%;
+    padding-bottom: 5vw;
+}
+
+.form-btn-container-section-4{
+    display: flex;
+    gap: 4vw;
+    align-items: center;
+}
+
+.btn-send-section-4{
+    padding:2vw 5vw;
+    border:inherit;
+    letter-spacing: 0.3vw;
+    font-weight: 600;
+    background-color: var(--blue-weak);
+    transition: 0.3s all ease;
+}
+
+.btn-send-section-4:hover{
+    background-color: var(--blue-strong);
+    color:white;
+}
+
+.whats-btn-container{
+    display: flex;
+    cursor: pointer;
+}
+
+.whats-icon, .whats-icon-2{
+    width: 1.4vw;
+    z-index: 2;
+}
+
+
+.whats-btn-blue{
+    text-decoration:none;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    color:var(--blue-strong);
+    gap:0.5rem;
+}
+
+.whats-btn-green{
+    margin-top: -1.5rem;
+    text-decoration:none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color:#47EC5D;
+    transition: 0.2s all ease;
+    gap:0.5rem;
+    opacity: 0;
+}
+
+.whats-btn-green:hover{
+    opacity: 100;
+}
+
+.whats-text-intro-section-4{
+    height: 100%;
+    letter-spacing: 0.2vw;
+    font-weight: 600;
+    
+}
+
+@media (max-width: 1000px) {
+
+    .form-container-section-4 {
+        height: 60vw;
+        margin-top: 4vw;
+    }
+
+    .form-personal-data-container-section-4 {
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap:2vw;
+        
+    }
+    input {
+        width: 34vw;
+        padding: 2vw;
+        font-size: 2.5vw;
+    }
+    
+
+    .form-message-container-section-4{
+        display: flex;
+        align-items: flex-start;
+        height: 24vw;
+        
+    }
+    
+    .form-message-container-section-4 input{
+        display: flex;
+        width: 100%;
+        padding-bottom: 14vw;
+    }
+
+}
+@media (max-width: 720px) {
+
+    #intro-section-4 {
+        padding-top: 0vw;
+        height: 110vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .form-personal-data-container-section-4 {
+        display:flex;
+        flex-direction: column;
+        gap:2vw;
+    }
+
+    input {
+        width: 60vw;
+        padding: 2vw;
+        font-size: 2.5vw;
+    }
+    
+    .form-container-section-4 {
+        width: 70vw;
+        padding: 6vw 5vw;
+        box-shadow: 0 0 1em var(--box-shadow);
+        height: 72vw;
+        align-items: center;
+    }
+
+    .title-section-4{
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-items: center;
+    }
+    .form-container-box{
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .title-word-section-4{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-btn-container-section-4{
+        justify-content: center;
+    }
+ 
+}

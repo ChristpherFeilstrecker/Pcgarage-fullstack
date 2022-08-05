@@ -1,0 +1,49 @@
+.body-subsection4{
+    min-height: 80vh;
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
+}
+
+.title-subsection4{
+    font-size: 2rem;
+}
+
+.services-container-subsection4{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.title-container-subsection4{
+    display: flex;
+margin-top: 2rem;
+background-color: green;
+color: white;
+width: 15rem;
+padding: 0.5rem;
+}
+
+.container-body-subsection4{
+    display: flex;
+}
+
+.service-subsection4{
+    width: 15rem;
+    padding: 0.5rem;
+    border-bottom: 1px solid rgb(98, 98, 98);
+    display: flex;
+justify-content: space-between;
+}
+
+.service-type-subsection4:hover, .option-service-subsection4:hover, .title-container-subsection4:hover{
+cursor: pointer;
+color: rgb(48, 91, 48);
+}
+
+.options-service-subsection4{
+    display: flex;
+    gap: 1rem;
+}

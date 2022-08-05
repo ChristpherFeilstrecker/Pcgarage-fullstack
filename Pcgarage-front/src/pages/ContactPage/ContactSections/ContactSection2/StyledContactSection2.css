@@ -1,0 +1,245 @@
+@import "../../../../StyledGlobalColor.css";
+
+#contact-section-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.header-container-contact-section-2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(219, 216, 216);
+    height: 50px;
+    
+}
+
+.header-text-contact-section-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5vw;
+}
+
+.nav-word-header-contact-section-2 {
+    color: var(--grey-text);
+    cursor: pointer;
+    transition: 0.5s all ease;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-word-header-contact-section-2:hover {
+    color: var(--blue-strong);
+}
+
+.arrow-contact-section-2 {
+    width: 0.7vw;
+
+}
+
+.body-container-contact-section-2{
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    padding-top: 6vw;
+    margin-bottom: 3rem;
+}
+
+.left-box-contact-section-2{
+    width: 70%;
+    border-right: 2px solid var(--border);
+}
+.rigth-box-contact-section-2{
+    width: 20%;
+}
+
+.title-contact-section-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container-contact-section-2 {
+    padding: 3vw 5vw;
+}
+
+.form-personal-data-container-contact-section-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2vw;
+    justify-content: space-between;
+    margin-bottom: 2vw;
+
+}
+
+.form-personal-data-container-contact-section-2 input {
+    display: flex;
+    width: 85%;
+    padding: 2vw;
+    border-width: thin;
+    border-style: solid;
+    border-color: var(--border);
+}
+
+.form-message-container-contact-section-2 {
+    display: flex;
+    align-items: flex-start;
+    height: 10vw;
+
+}
+
+.form-message-container-contact-section-2 input {
+    display: flex;
+    width: 100%;
+    padding-bottom: 5vw;
+}
+
+.form-btn-container-contact-section-2 {
+    display: flex;
+    gap: 4vw;
+    align-items: center;
+}
+
+.btns-send-container-contact-section-2{
+margin-top: 2rem;
+}
+
+.btn-send-contact-section-2 {
+    padding: 2vw 5vw;
+    border: inherit;
+    letter-spacing: 0.3vw;
+    font-weight: 600;
+    background-color: var(--blue-weak);
+    transition: 0.3s all ease;
+}
+
+.btn-send-contact-section-2:hover {
+    background-color: var(--blue-strong);
+    color: white;
+}
+
+.rigth-box-contact-section-2{
+    padding-left: 3vw;
+}
+
+.rigth-first-block-contact-section-2{
+    padding-bottom: 2vw;
+        border-bottom: var(--border) solid thin;
+    }
+
+.rigth-block-contact-section-2{
+padding: 2vw 0;
+    border-bottom: var(--border) solid thin;
+}
+
+.rigth-last-block-contact-section-2{
+    padding: 2vw 0;
+    }
+
+.rigth-box-title-contact-section-2{
+    font-weight: 600;
+}
+
+.rigth-box-itens-contact-section-2{
+    padding-top: 2vw;
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+}
+
+.rigth-box-icon-contact-section-2{
+    display: flex;
+    flex-direction: column;
+}
+
+.rigth-icon-contact-section-2{
+    background-color: white;
+    height: 1.3rem;
+    cursor: pointer;
+}
+
+.rigth-sub-icon-contact-section-2{
+    background-color: white;
+    margin-top: -1.55vw;
+    height: 1.3rem;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.rigth-sub-icon-contact-section-2:hover{
+        transition: 0.3s all ease;
+        opacity: 100%;
+}
+
+.rigth-box-text-contact-section-2{
+    padding-bottom: 0.3vw;
+}
+
+.rigth-box-text-edress-contact-section-2{
+    margin-top: -0.3vw;
+}
+
+.rigth-box-edress-contact-section-2{
+    padding-top: 2vw;
+    display: flex;
+}
+
+@media (max-width: 1000px) {
+
+    .form-personal-data-container-contact-section-2 input {
+        display: flex;
+        width: 89%;
+        padding: 2vw;
+    }
+
+
+    .body-container-contact-section-2{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .left-box-contact-section-2{
+        width: 90%;
+        border-right: none;
+    }
+
+    .rigth-box-contact-section-2{
+        width: 90%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .rigth-block-contact-section-2, .rigth-first-block-contact-section-2{
+            border-bottom: none;
+        }
+   
+
+}
+
+@media (max-width: 720px) {
+
+
+    .form-personal-data-container-contact-section-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .form-personal-data-container-contact-section-2 input {
+        display: flex;
+        width: 95%;
+        padding: 2vw;
+    }
+
+}
+
+@media (max-width: 550px) {
+
+}

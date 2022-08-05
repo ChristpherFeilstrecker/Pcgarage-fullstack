@@ -1,0 +1,153 @@
+@import "../../../../StyledGlobalColor.css";
+
+#intro-section-2{
+    margin-top: 2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.title-container{
+    padding: 3vw;
+}
+
+.container-boxes{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2vw;
+}
+
+.box-container{
+    display: flex;
+    flex-direction: column;
+    gap:1vw;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+.box-image{
+    height: 20vw;
+    width: 25vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.img-box{
+    filter: brightness(45%);
+    width: 120%;
+}
+
+.img-box-2{
+    filter: brightness(45%);
+    width: 120%;
+}
+
+.img-box:hover,.img-box-2:hover{
+    width: 110%;
+}
+
+.nav-box{
+    z-index: 10;
+    margin-top: -12vw;
+    margin-bottom: 12vw;
+    font-size: 2vw;
+    font-weight: 500;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-word{
+    z-index: 10;
+    transition: 0.2s all ease;
+
+}
+
+.nav-word:hover{
+    color:var(--blue-weak)
+}
+
+
+@media (max-width: 1000px) {
+    #intro-section-2{
+        height: 76vw;
+
+    }
+
+    .container-boxes{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        height: 85%;
+        width: 65%;
+        margin-bottom: 3vw;
+    }
+
+    .box-image{
+        background-color: rgb(36, 34, 49);
+        height: 30vw;
+        width: 35vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .nav-box{
+        z-index: 10;
+        margin-top: -17vw;
+        font-size: 2vw;
+        font-weight: 500;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 570px) {
+
+    #intro-section-2{
+        height: 200vw;
+
+    }
+    .container-boxes{
+        display:grid;
+        
+        grid-template-columns: 1fr 1fr ;
+        height: 100%;
+        width: 90%;
+        margin-bottom: 3vw;
+    }
+    .box-image{
+        background-color: rgb(36, 34, 49);
+        height: 60vw;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        overflow: hidden; 
+    }
+
+    .nav-box{
+        z-index: 10;
+        margin-top: -34vw;
+        font-size: 5vw;
+        font-weight: 500;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+}
+

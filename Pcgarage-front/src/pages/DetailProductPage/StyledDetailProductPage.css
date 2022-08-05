@@ -1,0 +1,141 @@
+@import "../../StyledGlobalColor.css";
+
+#detailProductpage{
+    padding-top: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+.body-container-detail-page{
+    display: flex;
+    margin-top: -8rem;
+}
+
+.container-products-detail-products-page{
+    border-radius: 1rem;
+    border-width: thin;
+    border-style: solid;
+    border-color: var(--border);
+    margin-left: 10rem;
+    width: 60%;
+    
+    display: flex;
+    padding: 2rem;
+    justify-content: center;
+}
+
+.container-1-detail-products-page{
+    display: flex;
+    margin-top: 2rem;
+}
+
+.box-1-detail-products-page{
+    display: flex;
+    flex-direction: column;
+}
+
+.title-detail-products-page{
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+    font-family: "Helvetica Neue";
+}
+
+.box-1-detail-products-page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18rem;
+    font-size: 1.5rem;
+}
+
+.container-btn-product-detail-page{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    
+}
+
+.mini-img{
+    max-width:2.5rem ;
+    max-height:2.5rem ;
+}
+
+.img-container{
+    width:2.5rem ;
+    height:2.5rem ;
+    border-width: thin; 
+    border-style: solid; 
+    border-color:  rgb(163, 161, 161);
+    cursor: pointer;
+}
+
+.mini-img-container{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    
+}
+
+.btns-container-box{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-select-img{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    margin-right: 2rem;
+    width: 18rem;
+}
+
+.arrow{
+    width: 1.5rem;
+    cursor: pointer;
+}
+
+
+@media (max-width: 1200px) {
+
+    .container-products-detail-products-page{
+        margin-left: 5rem;
+    }
+}
+
+@media (max-width: 1000px) {
+    .container-products-detail-products-page{
+        margin-left: 0rem;
+    }
+
+    .body-container-detail-page{
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 3rem;
+    }
+
+    .rigth-box-contact-section-2{
+        margin-top: 3rem;
+    }
+}
+
+@media (max-width: 850px) {
+.container-1-detail-products-page{
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+.container-btn-product-detail-page{
+    flex-direction: column;
+    margin-top: 2rem;
+    gap: 1rem;
+
+}
+}

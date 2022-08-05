@@ -1,0 +1,74 @@
+@media (max-width: 1000px) {
+    .menu-container {}
+
+    .menu {
+        position: fixed;
+        background-color: white;
+        width: 250px;
+        height: 100vh;
+        margin-top: 4px;
+        border-right-width: medium;
+        border-right-style: solid;
+        border-right-color: #e7e7e7;
+    }
+
+}
+
+.splash-screm {
+    background-color: white;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-splash{
+    width: 15rem;
+    animation: splash 2s infinite;
+}
+
+@keyframes splash {
+    0% {
+        width: 1rem;
+    }
+
+    50% {
+        width: 15rem;
+    }
+
+    50.5% {
+        transform: rotate(1turn);
+    }
+
+    51% {
+        
+    }
+
+    80% {
+
+        
+    }
+
+    90% {
+        
+    }
+
+    100% {
+        width: 15rem;
+    }
+}
+
+.whats-icon-container{
+    z-index: 2000;
+    width: 97%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: fixed;
+}
+.whats-fixed-icon{
+    width: 3rem;
+    margin-bottom: -72rem;
+    z-index: 2001;
+}
+
