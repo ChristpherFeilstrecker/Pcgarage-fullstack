@@ -62,4 +62,22 @@ export class AdminDatabase extends BaseDataBase {
       }
    }
 
+   public async deleteAdmin(
+      id: String
+        
+     ): Promise<void | any> {
+      try {
+         let query = `DELETE FROM \`${this.tableName}\` WHERE \`id\`="${id}";`
+      
+         const result = await BaseDataBase.connection.raw(
+           query
+         );
+  
+      } catch (error) {
+         if (error instanceof Error) {
+            throw new Error(error.message)
+         }
+      }
+   }
+
 }

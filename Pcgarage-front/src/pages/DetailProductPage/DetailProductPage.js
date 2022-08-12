@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+//import { useNavigate } from "react-router-dom";
 import GlobalContext from "../../components/global/globalContext";
 import "./StyledDetailProductPage.css";
 import addCar from "../../images/add-car.png"
@@ -19,31 +19,26 @@ import iconLetterBlue from "../../images/icon-letter-blue.png"
 import iconPhoneBlue from "../../images/icon-phone-blue.png"
 import iconPointerBlue from "../../images/icon-pointer-blue.png"
 
-import branca from "../../images/fotos_iniciais/detalhes/camisetabranca.jpg"
-import azul from "../../images/fotos_iniciais/detalhes/camisetaazul.jpg"
-import vermelha from "../../images/fotos_iniciais/detalhes/camisetavermelha.jpg"
 
 import arrowLeft from "../../images/arrow-to-left.png"
 import arrowRigth from "../../images/arrow-to-rigth.png"
 
 
 export default function DetailProductPage(props) {
-    let navigate = useNavigate();
+//    let navigate = useNavigate();
     const data = useContext(GlobalContext);
-    const cart = data.cart;
+    let cart = data.cart;
     const setCart = data.setCart;
     const prodToDetail = data.prodToDetail;
     let [qtd, setQtd] = useState("1")
     const [alert, setAlert] = useState(false)
     const [message, setMessage] = useState("")
     const [imgIndex, setImgIndex] = useState(0)
-    const images = [vermelha]
-    const imgs = [{ id: 0, img: vermelha }]
+    const images = []
+    const imgs = []
     //const params = window.location.search.substring(1).split(':');
     //const products = data.allProducts.products
     // const produtos = data.produtos
-
-
 
     const pushImgsToArray = (() => {
         if (prodToDetail.imagem1) {
@@ -51,7 +46,7 @@ export default function DetailProductPage(props) {
                 id: "",
                 img: ""
             }
-            modelToMiniImg.id = 1
+            modelToMiniImg.id = 0
             modelToMiniImg.img = prodToDetail.imagem1
             imgs.push(modelToMiniImg)
             images.push(prodToDetail.imagem1)
@@ -63,7 +58,7 @@ export default function DetailProductPage(props) {
                 id: "",
                 img: ""
             }
-            modelToMiniImg.id = 2
+            modelToMiniImg.id = images.length
             modelToMiniImg.img = prodToDetail.imagem2
             imgs.push(modelToMiniImg)
             images.push(prodToDetail.imagem2)
@@ -74,28 +69,29 @@ export default function DetailProductPage(props) {
                 id: "",
                 img: ""
             }
-            modelToMiniImg.id = 3
+            modelToMiniImg.id = images.length
             modelToMiniImg.img = prodToDetail.imagem3
             imgs.push(modelToMiniImg)
             images.push(prodToDetail.imagem3)
         }
-
+        
         if (prodToDetail.imagem4) {
             const modelToMiniImg = {
                 id: "",
                 img: ""
             }
+            modelToMiniImg.id = images.length
             modelToMiniImg.img = prodToDetail.imagem4
             imgs.push(modelToMiniImg)
             images.push(prodToDetail.imagem4)
         }
-
+        
         if (prodToDetail.imagem5) {
             const modelToMiniImg = {
                 id: "",
                 img: ""
             }
-            modelToMiniImg.id = 5
+            modelToMiniImg.id = images.length
             modelToMiniImg.img = prodToDetail.imagem5
             imgs.push(modelToMiniImg)
             images.push(prodToDetail.imagem5)
@@ -123,14 +119,13 @@ export default function DetailProductPage(props) {
         }
 
     })
-    console.log("carrinho", cart)
     const getProduct = (() => {
 
         const addProductToCart = (() => {
+console.log("cart",cart)
+           // let index =cart && cart.findIndex(i => i.id === prodToDetail.id)
 
-             const index = cart.findIndex((i) => prodToDetail.id === i.id)
-
-            if (index === -1) {
+           // if (index === -1) {
                 const newProduct = {
                     id: prodToDetail.id,
                     nome: prodToDetail.nome,
@@ -138,16 +133,17 @@ export default function DetailProductPage(props) {
                     imagem: prodToDetail.imagem1,
                     quantidade: qtd
                 }
-                const newCart = [...cart, newProduct]
+                let newCart = [...cart, newProduct]
+
                 setCart(newCart)
                 setMessage("Produto adicionado no carrinho")
                 setAlert(true)
                 showAlert()
-            } else {
-                setMessage("Produto ja consta no carrinho")
-                setAlert(true)
-                showAlert()
-            }
+          //  } else {
+           //     setMessage("Produto ja consta no carrinho")
+           //     setAlert(true)
+           //     showAlert()
+          //  }
 
         })
 

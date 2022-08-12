@@ -40,7 +40,7 @@ export class ProductsDatabase extends BaseDataBase {
       }
    }
 
-   public async editProductGaleria(
+   public async editProduct(
       id: String,
       id_galeria: String,
       nome: String,
@@ -50,7 +50,7 @@ export class ProductsDatabase extends BaseDataBase {
         
      ): Promise<void | any> {
       try {
-         let query = `UPDATE \`${this.tableName}\` SET \`id_galeria\`="${id_galeria}", \`nome\`="${nome}", \`descricao\`="${descricao}", \observacao\`="${observacao}", \`imagem1\`="${imagem1}" WHERE \`id\`="${id}";`
+         let query = `UPDATE \`${this.tableName}\` SET \`id_galeria\`="${id_galeria}", \`nome\`="${nome}", \`descricao\`="${descricao}", \`observacao\`="${observacao}", \`imagem1\`="${imagem1}" WHERE \`id\`="${id}";`
   
          const result = await BaseDataBase.connection.raw(
            query
@@ -64,14 +64,13 @@ export class ProductsDatabase extends BaseDataBase {
    }
 
   
-   public async addProductImagem(
+   public async editProductImagem(
       id: String,
       pos:String,
       imagem: String
         
      ): Promise<void | any> {
       try {
-         console.log("imagens",imagem)
          let query = `UPDATE \`${this.tableName}\` SET \`${pos}\`="${imagem}" WHERE \`id\`="${id}";`
   
          const result = await BaseDataBase.connection.raw(

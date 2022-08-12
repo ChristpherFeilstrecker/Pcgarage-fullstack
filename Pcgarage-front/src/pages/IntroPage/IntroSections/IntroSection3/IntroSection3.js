@@ -1,5 +1,3 @@
-import { SubTitleTag, SubTitleTagB, TitleTagType } from "../../../../StyledGlobal";
-import newYork from "../../../../images/new-york-1920x500.jpg"
 import "./StyledIntroSection3.css";
 import { useContext } from "react";
 import GlobalContext from "../../../../components/global/globalContext";
@@ -21,7 +19,7 @@ export default function IntroSection3() {
             <div className="container-section3">
                 <div className="box-container-video-section3">
                     <div className="video-container">
-                        <iframe width="480" height="250" src={videos && videos[0].url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                        <iframe className="video" src={videos && videos[0].url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                     </div>
                 </div>
                 <div className="box-container-section3">

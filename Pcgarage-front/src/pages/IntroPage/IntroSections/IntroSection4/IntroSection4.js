@@ -1,12 +1,12 @@
+import { useContext } from "react";
+import GlobalContext from "../../../../components/global/globalContext";
 import useForm from "../../../../components/hooks/useForm";
-import { registDataMessage } from "../../../../components/services/useRequire";
 import { SubTitleTagB } from "../../../../StyledGlobal";
-import whatsBlue from "../../../../images/icon-whatss-blue.png"
-import whatsGreen from "../../../../images/icon-whatss-green.png"
 import "./StyledIntroSection4.css";
 
 export default function IntroSection4() {
-
+    const data = useContext(GlobalContext);
+    const parametros = data.parametros
     const [form, onChange, clear] = useForm({ name: "", phone: "", email: "", message: "" })
 
     const onChangeInputs = (ev) => {
@@ -75,11 +75,15 @@ export default function IntroSection4() {
                             <div href="" className="whats-btn" data-aos="fade-down">
                                 <div className="whats-btn-blue">
                                   
-                                  <div className="whats-text-intro-section-4">WHATSAPP</div> 
+                                <a href={`https://api.whatsapp.com/send?phone=${parseFloat(parametros && parametros[0].celular)}&text=Olá! Gostária de solicitar um orçamento.`}  className="whats-text-intro-section-4" target="_blank" rel="noreferrer">
+                                WHATSAPP
+                            </a>
                                 </div>
                                 <div className="whats-btn-green">
                                  
-                                <div className="whats-text-intro-section-4">WHATSAPP</div>  
+                                <a href={`https://api.whatsapp.com/send?phone=${parseFloat(parametros && parametros[0].celular)}&text=Olá! Gostária de solicitar um orçamento.`}  className="whats-text-intro-section-4" target="_blank" rel="noreferrer">
+                                WHATSAPP
+                            </a>  
                                 </div>
                                 
                             </div>

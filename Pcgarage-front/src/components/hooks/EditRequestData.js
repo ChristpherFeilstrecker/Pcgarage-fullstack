@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+//import { useState } from "react";
 
 const editDestaqueData = (url,body) => {
     let data = "";
@@ -12,7 +12,7 @@ const editDestaqueData = (url,body) => {
                 data=response.data;
             })
             .catch((error) => {
-                console.log("erro", error)
+                console.log("erro", error.response.data)
             });
   
     return data;

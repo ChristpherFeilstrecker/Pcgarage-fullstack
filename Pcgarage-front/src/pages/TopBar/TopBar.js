@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./StyledTopBar.css";
 import logo from "../../images/pclogo.jpg"
 import car from "../../images/shopping-cart.png"
 import carblue from "../../images/shopping-cart-blue.png"
+import GlobalContext from "../../components/global/globalContext";
 
 
 export default function TopBar() {
+    const data = useContext(GlobalContext);
+    const setTitle = data.setTitle
+    const setSearch = data.setSearch
     let navigate = useNavigate();
     let [menu, setMenu] = useState(true)
 
@@ -15,6 +19,15 @@ export default function TopBar() {
         navigate(nav)
         setMenu(true);
     })
+
+    const allProducts=()=>{
+    
+        setMenu(true);
+        setTitle(`TODOS PRODUTOS`)
+        setSearch(`TODOS PRODUTOS`)
+        navigate("/produtos")
+        window.scrollTo(0, 0)
+    }
 
     return (
         <header className="top-bar-container">
@@ -34,7 +47,7 @@ export default function TopBar() {
                         <div className="nav-section ">
                             <ul className="nav-buttons">
                                 <li className="nav-button" onClick={() => navigateCloseMenu(`/`)}>INÍCIO</li>
-                                <li className="nav-button" onClick={() => navigateCloseMenu(`/produtos`)}>PRODUTOS</li>
+                                <li className="nav-button" onClick={() => allProducts()}>PRODUTOS</li>
                                 <li className="nav-button" onClick={() => navigateCloseMenu(`/sobre`)}>QUEM SOMOS</li>
                                 <li className="nav-button" onClick={() => navigateCloseMenu(`/videos`)}>VIDEOS</li>
                                 <li className="nav-button" onClick={() => navigateCloseMenu(`/contato`)}>CONTATO</li>

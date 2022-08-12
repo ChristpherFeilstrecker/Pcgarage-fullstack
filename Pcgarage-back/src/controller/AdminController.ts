@@ -51,6 +51,24 @@ export class AdminController {
       }
    }
 
+   public async deleteAdmin(req: Request, res: Response) {
+      try {
+         const  id  = req.query.id
+
+         const result = await AdminBusiness.deleteAdmin(
+            id as string
+         );
+         res.status(200).send(result);
+      } catch (error) {
+
+         if (error instanceof Error) {
+            res.status(400).send(error.message);
+         } else {
+            res.send({ message: "Controller - Algo de errado ao deletar administrador" })
+         }
+      }
+   }
+
 
 }
 

@@ -76,7 +76,7 @@
 
 @media (max-width: 1000px) {
     #intro-section-2{
-        height: 76vw;
+        min-height: 76vw;
 
     }
 
@@ -115,13 +115,13 @@
 @media (max-width: 570px) {
 
     #intro-section-2{
-        height: 200vw;
+        min-height: 200vw;
 
     }
     .container-boxes{
         display:grid;
         
-        grid-template-columns: 1fr 1fr ;
+        grid-template-columns: 1fr ;
         height: 100%;
         width: 90%;
         margin-bottom: 3vw;
@@ -140,6 +140,7 @@
     .nav-box{
         z-index: 10;
         margin-top: -34vw;
+        margin-bottom: 26vw;
         font-size: 5vw;
         font-weight: 500;
         color: white;

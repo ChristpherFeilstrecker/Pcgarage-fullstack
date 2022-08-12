@@ -82,7 +82,13 @@ background-color: rgb(168, 35, 35);
 .product-to-edit{
     display: flex;
     flex-direction: column;
+    margin-left: 2rem;
 }
+.product-to-edit2{
+    display: flex;
+    margin-left: 2rem;
+}
+
 
 .form-Subsection4{
     margin-left: 2rem;
@@ -93,4 +99,19 @@ background-color: rgb(168, 35, 35);
     width: 100%;
     display: flex;
     justify-content: center;
+}
+
+.info-actual2{
+    margin-left: 2rem;
+margin-top: 7rem;
+margin-bottom: 2rem;
+
+}
+
+.title-list-to-edit-or-delete2{
+    display: flex;
+    width: 15rem;
+    background-color: rgb(110, 236, 98);
+    padding-left: 0.5rem;
+    justify-content: space-between;
 }

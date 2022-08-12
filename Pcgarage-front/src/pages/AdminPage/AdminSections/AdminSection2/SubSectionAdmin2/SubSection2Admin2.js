@@ -1,11 +1,6 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext } from "react"
 import "./StyledSubSection2Admin2.css";
 import GlobalContext from "../../../../../components/global/globalContext";
-import useForm from "../../../../../components/hooks/useForm";
-import editDestaqueData from "../../../../../components/hooks/EditRequestData"
-import { BASE_URL } from "../../../../../components/constants/BaseURL";
-import newGaleryData from "../../../../../components/hooks/newRequestData";
-import delRequestData from "../../../../../components/hooks/delRequestData";
 import { useNavigate } from "react-router-dom";
 import { useProtectedPage } from "../../../../../components/hooks/useProtectPage";
 

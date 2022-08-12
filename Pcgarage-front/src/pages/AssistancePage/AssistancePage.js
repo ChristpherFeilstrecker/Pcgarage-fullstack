@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import GlobalContext from "../../components/global/globalContext";
 import "./StyledAssistancePage.css";
 
 
 export default function AssistancePage() {
-    let navigate = useNavigate();
+ //   let navigate = useNavigate();
     const data = useContext(GlobalContext);
     let videos = data.videos
 

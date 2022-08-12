@@ -36,7 +36,11 @@ export class ProductsBusiness {
       nome: String,
       descricao: String,
       observacao: String,
-      imagem1: String
+      imagem1: String,
+      imagem2: String,
+      imagem3: String,
+      imagem4: String,
+      imagem5: String
    ) {
       try {
 
@@ -44,19 +48,54 @@ export class ProductsBusiness {
             throw new Error("Business - Necessário informar um ID válido");
          }
 
-         if (!nome && !id_galeria && !descricao && !observacao && !imagem1) {
+         if (!nome && !id_galeria && !descricao && !observacao && !imagem1 && !imagem2 && !imagem3 && !imagem4 && !imagem5) {
             throw new Error("Business - Necessário informar no mínimo um atributo para editar");
          }
 
 
-         const highlights = await this.productsDatabase.editProductGaleria(
+         const highlights = await this.productsDatabase.editProduct(
             id,
             id_galeria,
             nome,
             descricao,
             observacao,
             imagem1
+
          );
+
+         if (imagem2) {
+            let pos = "imagem2"
+            const highlights = await this.productsDatabase.editProductImagem(
+               id,
+               pos,
+               imagem2
+            );
+         } 
+         if (imagem3) {
+            let pos = "imagem3"
+            const highlights = await this.productsDatabase.editProductImagem(
+               id,
+               pos,
+               imagem3
+            );
+         } 
+         
+         if (imagem4) {
+            let pos = "imagem4"
+            const highlights = await this.productsDatabase.editProductImagem(
+               id,
+               pos,
+               imagem4
+            );
+         } 
+          if (imagem5) {
+            let pos = "imagem5"
+            const highlights = await this.productsDatabase.editProductImagem(
+               id,
+               pos,
+               imagem5
+            );
+         }
 
 
 
@@ -133,28 +172,28 @@ export class ProductsBusiness {
 
          if (imagem2) {
             let pos = "imagem2"
-            const highlights = await this.productsDatabase.addProductImagem(
+            const highlights = await this.productsDatabase.editProductImagem(
                id,
                pos,
                imagem2
             );
          } else if (imagem3) {
             let pos = "imagem3"
-            const highlights = await this.productsDatabase.addProductImagem(
+            const highlights = await this.productsDatabase.editProductImagem(
                id,
                pos,
                imagem3
             );
          } else if (imagem4) {
             let pos = "imagem4"
-            const highlights = await this.productsDatabase.addProductImagem(
+            const highlights = await this.productsDatabase.editProductImagem(
                id,
                pos,
                imagem4
             );
          } else if (imagem5) {
             let pos = "imagem5"
-            const highlights = await this.productsDatabase.addProductImagem(
+            const highlights = await this.productsDatabase.editProductImagem(
                id,
                pos,
                imagem5

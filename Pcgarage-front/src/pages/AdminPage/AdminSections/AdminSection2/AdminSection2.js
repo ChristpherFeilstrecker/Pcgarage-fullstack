@@ -1,15 +1,15 @@
 import { Route, Routes } from "react-router-dom";
 import "./StyledAdminSection2.css";
 import SubSection1Admin2 from "./SubSectionAdmin2/SubSection1Admin2";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import SubSection2Admin2 from "./SubSectionAdmin2/SubSection2Admin2";
 import SubSection3Admin2 from "./SubSectionAdmin2/SubSection3Admin2";
 import SubSection4Admin2 from "./SubSectionAdmin2/SubSection4Admin2";
-import arrow from "../../../../images/arrow.png"
+//import arrow from "../../../../images/arrow.png"
 
 
 export default function AdminSection2() {
-    let navigate = useNavigate();
+ //   let navigate = useNavigate();
     return (
         <div id="about-section-2">
            

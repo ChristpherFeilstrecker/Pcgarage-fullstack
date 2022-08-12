@@ -60,6 +60,79 @@ export class VideosBusiness {
          }
       }
    }
+
+   public async deleteVideo(
+      id: String
+   ) {
+      try {
+
+         if (!id) {
+            throw new Error("Business - Necessário informar id para deletar produto");
+         }
+
+         await this.videosDatabase.deleteVideo(
+            id
+         );
+
+         return ("Business - Produto deletado com sucesso");
+      } catch (error) {
+
+         if (error instanceof Error) {
+            throw new Error(error.message)
+         } else {
+            throw new Error("Business - Erro ao deletar produto")
+         }
+      }
+   }
+
+   public async editVideo(
+      id: String,
+      nome: String,
+      descricao: String,
+      url: String
+   ) {
+      try {
+
+         if (!id ) {
+            throw new Error("Business - Necessário informar um ID válido");
+         }
+
+         if (!nome && !descricao && !url ) {
+            throw new Error("Business - Necessário informar no mínimo um atributo para editar");
+         }
+         
+         if(nome){
+            const Gallerie = await this.videosDatabase.editVideoNome(
+               id,
+               nome
+            );
+         }
+
+         if(descricao){
+            const Gallerie = await this.videosDatabase.editVideoDescricao(
+               id,
+               descricao
+            );
+         }
+
+         if(url){
+            const Gallerie = await this.videosDatabase.editVideoUrl(
+               id,
+               url
+            );
+         }
+
+         return ("Business - Galeria editada com sucesso");
+      } catch (error) {
+
+         if (error instanceof Error) {
+            throw new Error(error.message)
+         } else {
+            throw new Error("Business - Erro ao editar galeria")
+         }
+      }
+   }
+
 /*
    public async editGallerie(
       id: String,

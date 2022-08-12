@@ -1,3 +1,21 @@
 export const BASE_URL = 
-"http://localhost:3003"
+"http://pcgarage-api.herokuapp.com"
+
+
+if (window.location.protocol == 'http:') {
+      
+    console.log("you are accessing us via "
+        +  "an insecure protocol (HTTP). "
+        + "Redirecting you to HTTPS.");
+          
+    window.location.href = 
+        window.location.href.replace(
+                   'http:', 'https:');
+} 
+else if
+    (window.location.protocol == "https:") {
+        console.log("you are accessing us via"
+            + " our secure HTTPS protocol.");
+    }
+
 

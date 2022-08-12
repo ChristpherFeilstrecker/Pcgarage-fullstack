@@ -1,7 +1,7 @@
-import { useEffect,useContext } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import GlobalContext from "../../components/global/globalContext";
-import GlobalState from "../../components/global/globalState";
+//import GlobalState from "../../components/global/globalState";
 import useForm from "../../components/hooks/useForm";
 import { SubTitleTagB } from "../../StyledGlobal";
 import CartProducts from "./CartProducts";
@@ -35,10 +35,10 @@ const setCart = data.setCart
         clear()
     }
 
-    const removeFromCart = (item)=>{
-        const index = cart.findIndex((i) => item.id === i.id)
-        cart.splice(index,1)
-    }
+ //   const removeFromCart = (item)=>{
+ //      const index = cart.findIndex((i) => item.id === i.id)
+ //       cart.splice(index,1)
+ //  }
 
     return (
         <div className="cart-page">

@@ -62,10 +62,10 @@ export class GalleriesController {
 
    public async deleteGallerie(req: Request, res: Response) {
       try {
-         const { id } = req.body
-
+         const  id  = req.query.id
+        
          const result = await GalleriesBusiness.deleteGallerie(
-            id
+            id as string
          );
          res.status(200).send(result);
       } catch (error) {

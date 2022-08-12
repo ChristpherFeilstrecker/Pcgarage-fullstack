@@ -52,5 +52,6 @@
   },
   "devDependencies": {
     "@types/multer": "^1.4.7"
-  }
+  },
+  "web_accessible_resources": [""]
 }

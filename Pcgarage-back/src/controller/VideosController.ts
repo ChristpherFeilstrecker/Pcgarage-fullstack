@@ -37,6 +37,46 @@ export class VideosController {
          }
       }
    }
+
+   public async deleteVideo(req: Request, res: Response) {
+      try {
+         const  id  = req.query.id
+
+         const result = await VideosBusiness.deleteVideo(
+            id as string
+         );
+         res.status(200).send(result);
+      } catch (error) {
+
+         if (error instanceof Error) {
+            res.status(400).send(error.message);
+         } else {
+            res.send({ message: "Controller - Algo de errado ao deletar produto" })
+         }
+      }
+   }
+
+   public async editVideo(req: Request, res: Response) {
+      try {
+         const { id, nome, descricao, url } = req.body
+
+         const result = await VideosBusiness.editVideo(
+            id,
+            nome,
+            descricao,   
+            url
+         );
+         res.status(200).send(result);
+      } catch (error) {
+
+         if (error instanceof Error) {
+            res.status(400).send(error.message);
+         } else {
+            res.send({ message: "Controller - Algo de errado ao editar video" })
+         }
+      }
+   }
+
 /*
    public async editGallerie(req: Request, res: Response) {
       try {

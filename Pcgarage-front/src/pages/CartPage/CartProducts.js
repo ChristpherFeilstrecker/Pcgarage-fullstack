@@ -1,17 +1,17 @@
 import { useContext } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+//import {  useNavigate } from "react-router-dom";
 import GlobalContext from "../../components/global/globalContext";
-import addCar from "../../images/add-car.png"
-import DetailProductPage from "../DetailProductPage/DetailProductPage";
+//import addCar from "../../images/add-car.png"
+//import DetailProductPage from "../DetailProductPage/DetailProductPage";
 
 export default function CartProducts(props) {
     const { id, imagem, nome, descricao, referencia, quantidade } = props.product
-    const { subCountProduct } = props
+ //   const { subCountProduct } = props
     const data = useContext(GlobalContext);
     const removeFromCart = data.removeFromCart
     const addCountProduct = data.addCountProduct
     const removeCountProduct = data.removeCountProduct
-    let navigate = useNavigate();
+ //   let navigate = useNavigate();
 
     return (
         <div key={id} id="cartProducts">

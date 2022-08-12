@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import "./StyledRouter.css";
 import TopBar from '../TopBar/TopBar'
 import Footer from '../Footer/Footer';
@@ -14,8 +14,11 @@ import DetailProductPage from '../DetailProductPage/DetailProductPage';
 import logo from '../../images/pclogo.jpg';
 import iconWhats from '../../images/whatsapp-fixed.png';
 import AdminPage from '../AdminPage/AdminPage';
+import GlobalContext from '../../components/global/globalContext';
 
 export const Router = () => {
+  const data = useContext(GlobalContext);
+    const parametros = data.parametros
   const [splash, setSplash] = useState(false)
   let [productID, setProductID] = useState('001')
 
@@ -35,7 +38,7 @@ useEffect(()=>{
     :
     <BrowserRouter className="page">
       <div className='whats-icon-container'>
-      <a href="https://api.whatsapp.com/send?phone=&text=Olá! Gostária de solicitar um orçamento"
+      <a href={`https://api.whatsapp.com/send?phone=${parseFloat(parametros && parametros[0].celular)}&text=Olá! Gostária de solicitar um orçamento.`}
     target="_blank" rel="noreferrer">
       <img className="whats-fixed-icon" src={iconWhats} alt="icon-whats"/>
     </a>       

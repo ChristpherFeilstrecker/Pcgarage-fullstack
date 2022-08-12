@@ -72,15 +72,10 @@ export default function SubSection3Admin2() {
 
         await axios.post("http://localhost:3003/upload", formData, headers)
             .then((response) => {
-                console.log("sucesso", response);
+                
                 url = "http://localhost:3003/files/" + response.data
             }).catch((err) => {
-                if (err.response) {
-                    console.log("erro res:", err.response.data)
-
-                } else {
-                    console.log("erro tente mais tarde")
-                }
+                setMessage("Erro ao coletar imagem, formatos aceitos, JPG, PNG e JPEG");
             })
 
         NewGaleryBD(url)
@@ -134,15 +129,12 @@ export default function SubSection3Admin2() {
 
         await axios.post("http://localhost:3003/upload", formData, headers)
             .then((response) => {
-                console.log("sucesso", response);
+                
                 url = "http://localhost:3003/files/" + response.data
             }).catch((err) => {
-                if (err.response) {
-                    console.log("erro res:", err.response.data)
-
-                } else {
-                    console.log("erro tente mais tarde")
-                }
+               
+                setMessage("Erro ao coletar imagem, formatos aceitos, JPG, PNG e JPEG");
+                
             })
 
         if (idGaleriaProduto === "") {
@@ -277,7 +269,7 @@ export default function SubSection3Admin2() {
                         <label>Galeria:</label>
 
                         <select name="idgaleria" value={idGaleriaProduto} onChange={updateIdGalery} >
-                            <option value="SP">Selecionar galeria</option>
+                            <option value="">Selecionar galeria</option>
                             {idGaleryList}
                         </select>
                     </div>

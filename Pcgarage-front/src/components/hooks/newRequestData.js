@@ -4,7 +4,6 @@ import axios from "axios";
 const newRequestData = (url,body) => {
    let data = "";
     let urlLink = url
-console.log("body2",body)
 
 const headers = {
     'headers': {

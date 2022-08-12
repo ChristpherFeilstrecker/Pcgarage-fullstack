@@ -28,7 +28,7 @@ export default function ContactSection2() {
     const data = useContext(GlobalContext);
     const parametros = data.parametros
 
-    console.log('PARAMETROS',parametros)
+    //console.log('PARAMETROS',parametros)
     const [form, onChange, clear] = useForm({ name: "",email: "", celPhone: "",phone: "" , message: "" })
 
     const onChangeInputs = (ev) => {

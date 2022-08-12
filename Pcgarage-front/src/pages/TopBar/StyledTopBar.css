@@ -205,8 +205,8 @@
 
     .nav-menu-container {
         background-color: white;
-        margin-top: 13vh;
-        margin-left: -45vh;
+        margin-top: 17vh;
+        margin-left: -46vh;
         width: 320px;
         height: 90vh;
         display: flex;
@@ -216,7 +216,7 @@
     .hide-nav-menu-container {
         visibility: visible;
         background-color: white;
-        margin-top: 13vh;
+        margin-top: 17vh;
         margin-left: -95vw;
         width: 320px;
         height: 90vh;
@@ -274,4 +274,39 @@
         transition: 1s all ease;
     }
 
+}
+
+@media (max-width: 600px) {
+    .nav-menu-container {
+        background-color: white;
+        margin-top: 17vh;
+        margin-left: -42vh;
+        width: 280px;
+        height: 90vh;
+        display: flex;
+        transition: 1s all ease;
+    }
+}
+
+@media (max-width: 560px) {
+    .nav-menu-container {
+        background-color: white;
+        margin-top: 17vh;
+        margin-left: -42vh;
+        width: 280px;
+        height: 90vh;
+        display: flex;
+        transition: 1s all ease;
+    }
+
+    .hide-nav-menu-container {
+        visibility: visible;
+        background-color: white;
+        margin-top: 17vh;
+        margin-left: -33rem;
+        width: 320px;
+        height: 90vh;
+        display: flex;
+        transition: 1s all ease;
+    }
 }

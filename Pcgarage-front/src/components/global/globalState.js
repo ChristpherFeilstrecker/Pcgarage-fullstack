@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import GlobalContext from "./globalContext";
-import botton from "../../images/fotos/Bottons e Pins/Bottons - Diversas Personalizacoes_BT7001-ok.jpg"
 import useRequestData from "../hooks/useRequestData";
 import { BASE_URL } from "../constants/BaseURL";
 
 export default function GlobalState(props) {
-    const [cart, setCart] = useState([])
+   let [cart, setCart] = useState([])
     const [prodToDetail, setProdToDetail] = useState([""])
     let [refresh, setRefresh] = useState(false)
     let [toAdd, setToAdd]= useState("")
     let [toEdit, setToEdit]= useState("")
+    let [search, setSearch] = useState("TODOS PRODUTOS");
+    let [title, setTitle] = useState("TODOS PRODUTOS");
 
 
 
@@ -21,10 +22,7 @@ export default function GlobalState(props) {
 
     let destaques = useRequestData(BASE_URL + "/destaques")
 
-    let usuarios = [{
-        nome:"admin",
-        senha:'admin'
-    }]
+    let usuarios = useRequestData(BASE_URL + "/admin")
 
     let videos = useRequestData(BASE_URL + "/videos")
 
@@ -60,6 +58,7 @@ export default function GlobalState(props) {
 
     })
 
+    /*
     let allProducts = {
         products: [
             {
@@ -72,6 +71,7 @@ export default function GlobalState(props) {
             }
         ]
     }
+    */
 
     useEffect(() => {
         const data = localStorage.getItem('cart')
@@ -103,7 +103,6 @@ export default function GlobalState(props) {
         removeFromCart,
         addCountProduct,
         removeCountProduct,
-        allProducts,
         galerias,
         parametros,
         produtos,
@@ -117,7 +116,11 @@ export default function GlobalState(props) {
         toEdit, 
         setToEdit,
         usuarios,
-        videos
+        videos,
+        search, 
+        setSearch,
+        title, 
+        setTitle
     }
 
     return (<GlobalContext.Provider value={data}>

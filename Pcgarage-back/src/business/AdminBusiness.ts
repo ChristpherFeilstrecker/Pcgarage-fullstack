@@ -104,6 +104,30 @@ export class AdminBusiness {
 
    }
 
+   public async deleteAdmin(
+      id: String
+   ) {
+      try {
+
+         if (!id) {
+            throw new Error("Business - Necessário informar id para deletar administrador");
+         }
+
+         await this.adminDatabase.deleteAdmin(
+            id
+         );
+
+         return ("Business - Produto deletado com sucesso");
+      } catch (error) {
+
+         if (error instanceof Error) {
+            throw new Error(error.message)
+         } else {
+            throw new Error("Business - Erro ao deletar produto")
+         }
+      }
+   }
+
 
 
 

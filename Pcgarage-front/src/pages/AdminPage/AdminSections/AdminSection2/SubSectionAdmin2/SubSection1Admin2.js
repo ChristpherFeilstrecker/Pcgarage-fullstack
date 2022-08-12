@@ -1,8 +1,8 @@
-import hands from "../../../../../images/cliente_missao.jpg"
+//import hands from "../../../../../images/cliente_missao.jpg"
 import "./StyledSubSection1Admin2.css";
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
-import GlobalContext from "../../../../../components/global/globalContext";
+import {  useState } from "react";
+//import GlobalContext from "../../../../../components/global/globalContext";
 import useForm from "../../../../../components/hooks/useForm";
 import axios from "axios";
 import { BASE_URL } from "../../../../../components/constants/BaseURL";
@@ -10,9 +10,9 @@ import { BASE_URL } from "../../../../../components/constants/BaseURL";
 export default function SubSection1Admin2() {
     let navigate = useNavigate();
 
-    const data = useContext(GlobalContext);
+    //const data = useContext(GlobalContext);
 
-    const [form, onChange, clear] = useForm({ nome:"", password:"" })
+    const [form, onChange] = useForm({ nome:"", password:"" })
     let[message,setMessage]=useState("")
     const Login = async e => {
         e.preventDefault()
@@ -28,7 +28,7 @@ export default function SubSection1Admin2() {
             .post(url,body)
             .then((res) => {
 
-               //localStorage.setItem("token", res.data.accessToken);
+               localStorage.setItem("token", res.data.accessToken);
                navigate("/admin/painel_de_controle")
 
                 if (res.data.user.hasAddress === false) {

@@ -21,23 +21,32 @@ const productsController = new ProductsController();
 const videosController = new VideosController();
 const adminController = new AdminController();
 
-// PCGarageRouter.get("/", 
-// (a,b) => {
-//     b.send('<p>teste back PC garage</p>');
-// }
-// );
+/*
+const baseDir = `${__dirname}/app/admin/build/`
+PCGarageRouter.use(express.static(`${baseDir}`))
+PCGarageRouter.get('/', (req, res) => 
+           res.sendfile('index.html' , { root : baseDir }))
+*/
+
+//teste rota principal
+
+PCGarageRouter.get("/", 
+ (a,b) => {
+     b.send('<p>teste back PC garage</p>');
+ }
+ );
 
 
 PCGarageRouter.get("/admin", adminController.admin);//Retorna email e senha administrador - OK(Funcional)
 PCGarageRouter.post("/addadmin", adminController.addadmin); //cria admin - OK(FUNCIONAL)
 PCGarageRouter.post("/login", adminController.login); // login - retorna token - OK(FUNCIONAL)
+PCGarageRouter.delete("/deletaradmin", adminController.deleteAdmin);
 
 PCGarageRouter.get("/destaques", highlightsController.highlights);//Retorna destaques - OK(Funcional)
 PCGarageRouter.put("/editardestaque", highlightsController.editHighlights); //Editar destaque - OK(Funcional)
 
 PCGarageRouter.get("/informacoes", informationController.information);//Retorna informacoes - OK(Funcional)
 PCGarageRouter.put("/editarinformacoes", informationController.editInformation); //Editar informações - OK (Funcional)
-
 
 PCGarageRouter.get("/galerias", galleriesController.galleries);//Retorna galerias - OK(Funcional)
 PCGarageRouter.post("/addgaleria", galleriesController.addGallerie); //Adicionar galeria - OK (Funcional)
@@ -48,21 +57,17 @@ PCGarageRouter.get("/produtos", productsController.products);//Retorna produtos 
 PCGarageRouter.post("/addproduto", productsController.addProduct); //Adicionar produto - OK (Funcional)
 PCGarageRouter.put("/addimgproduto", productsController.addImgProduct);// Adicionar imagem a produto -
 PCGarageRouter.put("/editarproduto", productsController.editProduct); //Editar produto - OK (Funcional)
-PCGarageRouter.put("/deletarimgproduto", productsController.deleteImgProduct); //Deletar uma imagem de 1 produtogit add . (funcional)
+PCGarageRouter.put("/deletarimgproduto", productsController.deleteImgProduct); //Deletar uma imagem de 1 produto . (funcional)
 PCGarageRouter.delete("/deletarproduto", productsController.deleteProduct); //Deletar produto - OK (Funcional)
 
 PCGarageRouter.get("/videos", videosController.videos);//Retorna videos - OK(Funcional)
 PCGarageRouter.post("/addvideo", videosController.addVideo); //Adicionar video
+PCGarageRouter.put("/editarvideo", videosController.editVideo);
+PCGarageRouter.delete("/deletarvideo", videosController.deleteVideo);
 
 PCGarageRouter.post("/upload", upload.single('image'), async (req,res)=>{
-   console.log(req.file)
     if(req.file){
         return res.json(req.file?.filename)
     }
 })
 
-/*
-PCGarageRouter.post("/upload", upload.single('file'), (req,res)=>{
-    return res.json(req.file?.filename)
-})
-*/

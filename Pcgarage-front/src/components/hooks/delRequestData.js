@@ -1,27 +1,26 @@
 import axios from "axios";
 
-const delRequestData = (url,id) => {
+const delRequestData = (url) => {
     let data = "";
-
     let urlLink = url
-
-    let body ={
-        id:id
+   
+    const headers = {
+        'headers': {
+            'Content-Type': 'application/json'
+        }
     }
-    console.log("body:",body)
 
-        axios
-            .delete(urlLink,body)
-            .then((response) => {
+    axios
+        .delete(urlLink,headers)
+        .then((response) => {
 
-                data=response.data;
-            })
-            .catch((error) => {
-                console.log("erro", error)
-            });
-  
+            data = response.data;
+        })
+        .catch((error) => {
+            console.log("erro", error.response.data)
+        });
+
     return data;
-
 }
 
 export default delRequestData

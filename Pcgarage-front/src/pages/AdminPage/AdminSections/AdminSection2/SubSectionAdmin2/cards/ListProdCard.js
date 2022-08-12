@@ -1,64 +1,133 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import delRequestData from "../../../../../../components/hooks/delRequestData"
+import { BASE_URL } from "../../../../../../components/constants/BaseURL";
 import GlobalContext from "../../../../../../components/global/globalContext";
 import useForm from "../../../../../../components/hooks/useForm";
+import EditRequestData from "../../../../../../components/hooks/EditRequestData";
 import "./StyledCards.css"
 
 export default function ListProdCard(props) {
+    let navigate = useNavigate();
     const data = useContext(GlobalContext);
     let toEdit = data.toEdit
     let destaques = data.destaques
     let galerias = data.galerias
     let produtos = data.produtos
-    let parametros = data.parametros
+    let parametros = data && data.parametros
     let usuarios = data.usuarios
     let videos = data.videos
     let setInfoOpen = props.setInfoOpen
     let setProdSel = props.setProdSel
-    let prodSel = props.prodSel
-console.log('prod SEL',prodSel.telefone)
-    const [formEditInfo, onChangeEditInfo, clearEditInfo] = useForm({ telefone: prodSel.telefone, celular: prodSel.celular, email: prodSel.email, endereco: prodSel.endereco })
+ //   let prodSel = props.prodSel
+    let [message, setMessage] = useState("")
 
-    const AddAdmin = (ev) => {
-        ev.preventDefault()
-        // newGaleryBD(formGalery)
-        //console.log("form", formAddProduto)
-        clearEditInfo()
+    const goToApp = () => {
+        navigate("/admin/painel_de_controle")
     }
+let tel = parametros && parametros[0].telefone
+   // Informações para editar
 
+   const [formEditInfo, onChangeEditInfo] = useForm({ telefone: tel, celular: parametros && parametros[0].celular, email: parametros && parametros[0].email, endereco: parametros && parametros[0].endereco })
+
+   const EditInfoBD = e => {
+       e.preventDefault()
+       let body = {
+           id:"001",
+           telefone: formEditInfo.telefone,
+           celular: formEditInfo.celular,
+           email: formEditInfo.email,
+           endereco: formEditInfo.endereco
+       }
+       
+       EditRequestData(BASE_URL + "/editarinformacoes", body)
+
+       setMessage("Informações editadas com sucesso");
+       setTimeout(() => {
+           setMessage("")
+           document.location.reload(true);
+       }, 1000)
+
+   }
+
+   //fim editar informações
+
+   //abrir opção selecionada para editar
     const openProdToEdit=(prod)=>{
         setInfoOpen(true)
         setProdSel(prod)
+    }
+
+    const DeleteGaleriaBD = (id) => {
+ 
+        delRequestData(BASE_URL + `/deletargaleria?id=${id}`)
+
+        setTimeout(() => {
+            document.location.reload(true);
+        }, 1000)
+
     }
 
     const listGal = galerias && galerias
     .map((gal) => {
         return <div key={gal.id} className="body-position-to-edit-or-delete">
         <div onClick={()=>openProdToEdit(gal)} className="position-name-edit-or-delete">{gal.nome}</div>
-        <strong className="button-delete">X</strong>
+        <strong onClick={()=>DeleteGaleriaBD(gal.id)} className="button-delete">X</strong>
     </div>
     })
+
+    const DeleteProdutoBD = (id) => {
+ 
+        delRequestData(BASE_URL + `/deletarproduto?id=${id}`)
+
+        setTimeout(() => {
+            document.location.reload(true);
+        }, 1000)
+
+    }
 
     const listProd = produtos && produtos
     .map((prod) => {
         return <div key={prod.id} className="body-position-to-edit-or-delete">
         <div onClick={()=>openProdToEdit(prod)} className="position-name-edit-or-delete">{prod.nome}</div>
-        <strong className="button-delete">X</strong>
+        <strong onClick={()=>DeleteProdutoBD(prod.id)} className="button-delete">X</strong>
     </div>
     })
+
+    const DeleteAdminBD = (id) => {
+ 
+        delRequestData(BASE_URL + `/deletaradmin?id=${id}`)
+
+        setTimeout(() => {
+            document.location.reload(true);
+        }, 1000)
+
+    }
 
     const listUsers = usuarios && usuarios
     .map((user) => {
-        return <div key={user.nome} className="body-position-to-edit-or-delete">
-        <div onClick={()=>openProdToEdit(user)} className="position-name-edit-or-delete">{user.nome}</div>
-        <strong className="button-delete">X</strong>
+        
+        return <div key={user.id} className="body-position-to-edit-or-delete">
+        <div className="position-name-edit-or-delete">{user.nome}</div>
+        <strong onClick={()=>DeleteAdminBD(user.id)} className="button-delete">X</strong>
     </div>
     })
 
+    const DeleteVideoBD = (id) => {
+ 
+        delRequestData(BASE_URL + `/deletarvideo?id=${id}`)
+
+        setTimeout(() => {
+            document.location.reload(true);
+        }, 1000)
+
+    }
+
     const listVideos = videos && videos
     .map((video) => {
-        return <div key={video.nome} className="body-position-to-edit-or-delete">
+        return <div key={video.id} className="body-position-to-edit-or-delete">
         <div onClick={()=>openProdToEdit(video)} className="position-name-edit-or-delete">{video.nome}</div>
-        <strong className="button-delete">X</strong>
+        <strong onClick={()=>DeleteVideoBD(video.id)} className="button-delete">X</strong>
     </div>
     })
 
@@ -143,61 +212,83 @@ console.log('prod SEL',prodSel.telefone)
             </div>
         </div>
         } else if (toEdit === "INFORMAÇÕES") {
-            return <div>
-                 <form onSubmit={() => AddAdmin()} className="form-Subsection3">
-                    <div>Preencha apenas o que deseja editar</div>
-                <input
-                    placeholder={"Telefone"}
-                    type='telefone'
-                    name="telefone"
-                    value={formEditInfo.telefone}
-                    onChange={onChangeEditInfo}
-                    className="input-Subsection3"
-                />
-                <input
-                    placeholder={"Celular"}
-                    type='celular'
-                    name="celular"
-                    value={formEditInfo.celular}
-                    onChange={onChangeEditInfo}
-                    className="input-Subsection3"
-                />
-                <input
-                    placeholder={"Email"}
-                    type='email'
-                    name="email"
-                    value={formEditInfo.email}
-                    onChange={onChangeEditInfo}
-                    className="input-Subsection3"
-                />
-                <input
-                    placeholder={"Endereço"}
-                    type='endereco'
-                    name="endereco"
-                    value={formEditInfo.endereco}
-                    onChange={onChangeEditInfo}
-                    className="input-Subsection3"
-                />
-                
+            return <div className="product-to-edit">
+            <form onSubmit={EditInfoBD} className="form-Subsection3">
+            <strong>Editar Informações:</strong>
+                 <div className="flex-container" >
+                     <label>Telefone:</label>
+                     <input
+                         placeholder={"Telefone*"}
+                         type='telefone'
+                         name="telefone"
+                         value={formEditInfo.telefone}
+                         onChange={onChangeEditInfo}
+                         className="input-Subsection3"
+                         
+                     /></div>
+                 <div className="flex-container" >
+                     <label>Celular:</label>
+                     <input
+                         placeholder={"Celular*"}
+                         type='celular'
+                         name="celular"
+                         value={formEditInfo.celular}
+                         onChange={onChangeEditInfo}
+                         className="input-Subsection3"
+                         
+                     />
+                 </div>
+                 
+                 <div className="flex-container" >
+                     <label>Email:</label>
+                     <input
+                         placeholder={"Email*"}
+                         type='email'
+                         name="email"
+                         value={formEditInfo.email}
+                         onChange={onChangeEditInfo}
+                         className="input-Subsection3"
+                        
+                     />
+                 </div>
 
-                <button>Editar</button>
+                 <div className="flex-container" >
+                     <label>Endereço:</label>
+                     <input
+                         placeholder={"Endereço*"}
+                         type='endereco'
+                         name="endereco"
+                         value={formEditInfo.endereco}
+                         onChange={onChangeEditInfo}
+                         className="input-Subsection3"
+                         
+                     />
+                 </div>
+                 
+                 <div className="btn-container" >
+                     <button type="submit">Salvar</button>
+                 </div>
+             </form>
+             <div>{message}</div>
+             <div>
+                 <button onClick={() => goToApp()}>voltar</button>
+             </div>
 
-            </form>
+             <div className="product-to-edit" >
+             <strong>Informações Atuais:</strong>
+             <label>Telefone: {parametros && parametros[0].telefone}</label>
+             <label>Celular: {parametros && parametros[0].celular}</label>
+             <label>Email: {parametros && parametros[0].email}</label>
+             <label>Endereço: {parametros && parametros[0].endereco}</label>
+             </div>
 
-            <div>
-                <strong>Informações Atuais</strong>
-                <div>Telefone: {parametros && parametros[0].telefone}</div>
-                <div>Celular: {parametros && parametros[0].celular}</div>
-                <div>Email: {parametros && parametros[0].email}</div>
-                <div>Endereço: {parametros && parametros[0].endereco}</div>
-            </div>
-            </div>
+         </div>
         } else if (toEdit === "USUÁRIO") {
             return <div>
-            <strong>Selecione o usuário que deseja editar</strong>
+            <strong>Excluir Administrador</strong>
             <div className="container-list-to-edit">
                 <div className="title-list-to-edit-or-delete">
-                    <div className="title-position-to-edit">Editar</div>
+                    <div className="title-position-to-edit"></div>
                     <div>Excluir</div>
                 </div>
                 <div>

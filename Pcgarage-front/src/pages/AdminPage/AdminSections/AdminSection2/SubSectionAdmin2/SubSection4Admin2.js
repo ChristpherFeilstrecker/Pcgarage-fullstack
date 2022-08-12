@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import "./StyledSubSection4Admin2.css";
 import GlobalContext from "../../../../../components/global/globalContext";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ export default function SubSection2Admin2() {
     const data = useContext(GlobalContext);
     let setToAdd = data.setToAdd
     let setToEdit = data.setToEdit
-    let parametros = data.parametros
+ //   let parametros = data.parametros
     let [infoOpen, setInfoOpen] = useState(false)
     let [prodSel, setProdSel] = useState("")
 
@@ -27,7 +27,7 @@ export default function SubSection2Admin2() {
         setToAdd(add)
         navigate("/admin/painel_de_controle/add")
       }
-
+/*
       const goToEditParams = (edit)=>{
         console.log("params",parametros[0])
         setProdSel(parametros[0])
@@ -35,6 +35,7 @@ export default function SubSection2Admin2() {
         setInfoOpen(false)
         navigate("/admin/painel_de_controle/edit")
       }
+*/
 
     const edit = ()=>{
         if(infoOpen){
@@ -45,9 +46,9 @@ export default function SubSection2Admin2() {
 
     }
 
-    const goToApp = () => {
-        navigate("/admin/painel_de_controle")
-    }
+  //  const goToApp = () => {
+  //      navigate("/admin/painel_de_controle")
+  //  }
 
 
     return (

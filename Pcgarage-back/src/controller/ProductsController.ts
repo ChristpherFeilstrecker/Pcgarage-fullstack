@@ -21,7 +21,7 @@ export class ProductsController {
 
    public async editProduct(req: Request, res: Response) {
       try {
-         const { id, id_galeria, nome, descricao, observacao, imagem1 } = req.body
+         const { id, id_galeria, nome, descricao, observacao, imagem1,imagem2,imagem3,imagem4,imagem5 } = req.body
 
          const result = await ProductsBusiness.editProduct(
             id,
@@ -29,7 +29,11 @@ export class ProductsController {
             nome,
             descricao,  
             observacao, 
-            imagem1
+            imagem1,
+            imagem2,
+            imagem3,
+            imagem4,
+            imagem5
          );
          res.status(200).send(result);
       } catch (error) {
@@ -107,10 +111,10 @@ export class ProductsController {
 
    public async deleteProduct(req: Request, res: Response) {
       try {
-         const { id } = req.body
+         const  id  = req.query.id
 
          const result = await ProductsBusiness.deleteProduct(
-            id
+            id as string
          );
          res.status(200).send(result);
       } catch (error) {

@@ -1,12 +1,11 @@
-import { Settings } from "@material-ui/icons";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import GlobalContext from "../../components/global/globalContext";
-import caneca from "../../images/fotos/Canecas e Squeezes/Caneca Capuccino_CC10017-ok.jpg"
+
 
 export default function CardProducts(props) {
     const data = useContext(GlobalContext);
-    const { id, nome, imagem1, descricao1 } = props.product
+    const { nome, imagem1, descricao1 } = props.product
     const [loading, setLoading] = useState(true)
     const setProdToDetail = data.setProdToDetail
     let navigate = useNavigate();

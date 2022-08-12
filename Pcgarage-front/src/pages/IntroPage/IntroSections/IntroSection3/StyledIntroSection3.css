@@ -2,7 +2,7 @@
 
 
 #intro-section-3 {
-    height: 75vh;
+    height: 40vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -52,4 +52,34 @@
     align-items: center;
     justify-content: center;
     width: 50%;
+}
+
+.video{
+    height: 20vw;
+    width:40vw;
+}
+
+@media (max-width: 1100px) {
+    .title-text-section3{
+        color: white;
+        text-shadow: 0.1em 0.1em 0.2em black;
+        font-size: 3vw;
+    }
+
+    .box-container-section3{
+        margin-left: 1rem;
+        
+    }
+}
+
+@media (max-width: 950px) {
+    
+
+    .box-container-section3{
+        margin-left: 2rem;
+        
+    }
+
+    
+
 }

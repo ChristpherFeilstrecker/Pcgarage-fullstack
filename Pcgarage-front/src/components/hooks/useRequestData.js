@@ -15,7 +15,7 @@ const useRequestData = (url) => {
             .catch((error) => {
                 console.log("erro", error)
             });
-    }, [url]);
+    }, [url, urlLink]);
 
     return data;
 
