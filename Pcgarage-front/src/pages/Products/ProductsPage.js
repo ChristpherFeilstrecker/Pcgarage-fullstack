@@ -1,20 +1,37 @@
 //import { useNavigate } from "react-router-dom";
 import "./StyledProductsPage.css";
 import CardProducts from "./CardProducts";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import GlobalContext from "../../components/global/globalContext";
+import axios from "axios";
+import { BASE_URL } from "../../components/constants/BaseURL";
 
 
 export default function ProductsPage(props) {
     const data = useContext(GlobalContext);
-    const produtos = data.produtos
-    let galerias = data.galerias
     const setTitle = data.setTitle
     const setSearch = data.setSearch
     const title = data.title
     const search = data.search
 
- //   const navigate = useNavigate();
+    const useRequestData = (url) => {
+        const [data, setData] = useState();
+        let urlLink = url
+       
+            axios
+                .get(urlLink)
+                .then((response) => {
+                    setData(response.data);
+                })
+                .catch((error) => {
+                    console.log("erro", error)
+                });
+    
+        return data;
+    
+    }
+    const galerias = useRequestData(BASE_URL + "/galerias")
+    const produtos = useRequestData(BASE_URL + "/produtos")
 
     const showModal = () => {
         let element = document.getElementById("modal");
@@ -27,7 +44,6 @@ export default function ProductsPage(props) {
     }
 
     const setSearchFunction=(galeri)=>{
-  //      console.log("id",galeri)
         setSearch(`${galeri.id}`)
         setTitle(`${galeri.nome}`)
     }

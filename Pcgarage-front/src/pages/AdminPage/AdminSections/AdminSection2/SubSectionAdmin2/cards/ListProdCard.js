@@ -6,20 +6,44 @@ import GlobalContext from "../../../../../../components/global/globalContext";
 import useForm from "../../../../../../components/hooks/useForm";
 import EditRequestData from "../../../../../../components/hooks/EditRequestData";
 import "./StyledCards.css"
+import axios from "axios";
 
 export default function ListProdCard(props) {
     let navigate = useNavigate();
     const data = useContext(GlobalContext);
     let toEdit = data.toEdit
-    let destaques = data.destaques
-    let galerias = data.galerias
-    let produtos = data.produtos
-    let parametros = data && data.parametros
-    let usuarios = data.usuarios
-    let videos = data.videos
     let setInfoOpen = props.setInfoOpen
     let setProdSel = props.setProdSel
- //   let prodSel = props.prodSel
+
+    const useRequestData = (url) => {
+        const [data, setData] = useState();
+        let urlLink = url
+       
+            axios
+                .get(urlLink)
+                .then((response) => {
+                    setData(response.data);
+                })
+                .catch((error) => {
+                    console.log("erro", error)
+                });
+    
+        return data;
+    
+    }
+
+    const galerias = useRequestData(BASE_URL + "/galerias")
+
+    const parametros = useRequestData(BASE_URL + "/informacoes")
+
+    const produtos = useRequestData(BASE_URL + "/produtos")
+
+    let destaques = useRequestData(BASE_URL + "/destaques")
+
+    let usuarios = useRequestData(BASE_URL + "/admin")
+
+    let videos = useRequestData(BASE_URL + "/videos")
+ 
     let [message, setMessage] = useState("")
 
     const goToApp = () => {

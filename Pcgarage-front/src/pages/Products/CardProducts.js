@@ -19,6 +19,7 @@ export default function CardProducts(props) {
     const goToDetailPage =(()=>{
         setProdToDetail(props.product)
         navigate("/detalhe_produto")
+        window.scrollTo(0, 0)
 
     })
 

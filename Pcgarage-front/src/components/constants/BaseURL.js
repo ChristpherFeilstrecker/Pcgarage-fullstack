@@ -1,5 +1,5 @@
 export const BASE_URL = 
-"http://pcgarage-api.herokuapp.com"
+"http://lojapcgarage.com.br/app"
 
 
 if (window.location.protocol == 'http:') {

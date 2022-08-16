@@ -1,14 +1,34 @@
 import "./StyledIntroSection1.css";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import GlobalContext from "../../../../components/global/globalContext";
+//import useRequestData from "../../../../components/hooks/useRequestData"
+import { BASE_URL } from "../../../../components/constants/BaseURL";
+import axios from "axios";
 
 export default function IntroSection1() {
     const navigate = useNavigate();
     const data = useContext(GlobalContext);
     const parametros = data.parametros
-    const destaques = data.destaques
 
+    const useRequestData = (url) => {
+        const [data, setData] = useState();
+        let urlLink = url
+       
+            axios
+                .get(urlLink)
+                .then((response) => {
+                    setData(response.data);
+                })
+                .catch((error) => {
+                    console.log("erro", error)
+                });
+    
+        return data;
+    
+    }
+
+    const destaques = useRequestData(BASE_URL + "/destaques")
 
     return (
         <div id="intro-section-1">

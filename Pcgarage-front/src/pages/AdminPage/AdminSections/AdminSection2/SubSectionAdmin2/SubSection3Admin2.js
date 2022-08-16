@@ -17,8 +17,25 @@ export default function SubSection3Admin2() {
     let setToAdd = data.setToAdd
     let toAdd = data.toAdd
     let setToEdit = data.setToEdit
-    let galerias = data.galerias
     let [message, setMessage] = useState("")
+
+    const useRequestData = (url) => {
+        const [data, setData] = useState();
+        let urlLink = url
+       
+            axios
+                .get(urlLink)
+                .then((response) => {
+                    setData(response.data);
+                })
+                .catch((error) => {
+                    console.log("erro", error)
+                });
+    
+        return data;
+    
+    }
+    const galerias = useRequestData(BASE_URL + "/galerias")
 
     const goToAdd = (add) => {
         setToAdd(add)
@@ -53,6 +70,7 @@ export default function SubSection3Admin2() {
         setMessage("Galeria adicionada com sucesso");
         setTimeout(() => {
             setMessage("")
+            document.location.reload(true);
         }, 4000)
 
     }
@@ -70,10 +88,10 @@ export default function SubSection3Admin2() {
             }
         }
 
-        await axios.post("http://localhost:3003/upload", formData, headers)
+        await axios.post(BASE_URL+"/upload", formData, headers)
             .then((response) => {
                 
-                url = "http://localhost:3003/files/" + response.data
+                url = BASE_URL+"/files/" + response.data
             }).catch((err) => {
                 setMessage("Erro ao coletar imagem, formatos aceitos, JPG, PNG e JPEG");
             })
@@ -110,6 +128,7 @@ export default function SubSection3Admin2() {
         setMessage("Produto adicionado com sucesso");
         setTimeout(() => {
             setMessage("")
+            document.location.reload(true);
         }, 4000)
 
     }
@@ -127,10 +146,10 @@ export default function SubSection3Admin2() {
             }
         }
 
-        await axios.post("http://localhost:3003/upload", formData, headers)
+        await axios.post(BASE_URL+"/upload", formData, headers)
             .then((response) => {
                 
-                url = "http://localhost:3003/files/" + response.data
+                url = BASE_URL+"/files/" + response.data
             }).catch((err) => {
                
                 setMessage("Erro ao coletar imagem, formatos aceitos, JPG, PNG e JPEG");
@@ -172,11 +191,12 @@ export default function SubSection3Admin2() {
             url: formAddVideo.url
         }
 
-        newRequestData(BASE_URL + "/addvideo", body)
+        newRequestData(BASE_URL+"/addvideo", body)
         clearVideo()
         setMessage("Video adicionado com sucesso");
         setTimeout(() => {
             setMessage("")
+            document.location.reload(true);
         }, 4000)
 
     }
@@ -203,6 +223,7 @@ export default function SubSection3Admin2() {
         setMessage("Administrador adicionado com sucesso");
         setTimeout(() => {
             setMessage("")
+            document.location.reload(true);
         }, 4000)
 
     }

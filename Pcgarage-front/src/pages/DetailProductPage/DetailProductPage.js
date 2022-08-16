@@ -25,10 +25,12 @@ import arrowRigth from "../../images/arrow-to-rigth.png"
 
 
 export default function DetailProductPage(props) {
-//    let navigate = useNavigate();
+    //    let navigate = useNavigate();
     const data = useContext(GlobalContext);
     let cart = data.cart;
     const setCart = data.setCart;
+    let pedido = data.pedido;
+    const setPedido = data.setPedido;
     const prodToDetail = data.prodToDetail;
     let [qtd, setQtd] = useState("1")
     const [alert, setAlert] = useState(false)
@@ -74,7 +76,7 @@ export default function DetailProductPage(props) {
             imgs.push(modelToMiniImg)
             images.push(prodToDetail.imagem3)
         }
-        
+
         if (prodToDetail.imagem4) {
             const modelToMiniImg = {
                 id: "",
@@ -85,7 +87,7 @@ export default function DetailProductPage(props) {
             imgs.push(modelToMiniImg)
             images.push(prodToDetail.imagem4)
         }
-        
+
         if (prodToDetail.imagem5) {
             const modelToMiniImg = {
                 id: "",
@@ -119,31 +121,49 @@ export default function DetailProductPage(props) {
         }
 
     })
+
     const getProduct = (() => {
 
         const addProductToCart = (() => {
-console.log("cart",cart)
-           // let index =cart && cart.findIndex(i => i.id === prodToDetail.id)
+            const newProduct = {
+                id: prodToDetail.id,
+                nome: prodToDetail.nome,
+                descricao: prodToDetail.descricao,
+                imagem: prodToDetail.imagem1,
+                quantidade: qtd
+            }
 
-           // if (index === -1) {
-                const newProduct = {
-                    id: prodToDetail.id,
-                    nome: prodToDetail.nome,
-                    descricao: prodToDetail.descricao,
-                    imagem: prodToDetail.imagem1,
-                    quantidade: qtd
+            if (Array.isArray(cart)) {
+               
+                    let index = cart && cart.findIndex(i => i.id === prodToDetail.id)
+
+                if (index === -1) {
+                    let newCart = [...cart, newProduct]
+                    setCart(newCart)
+                    setMessage("Produto adicionado no carrinho")
+                    setAlert(true)
+                    showAlert()
+                    setPedido("")
+                    
+                } else {
+                    setMessage("Produto ja consta no carrinho")
+                    setAlert(true)
+                    showAlert()
                 }
-                let newCart = [...cart, newProduct]
-
+            } else {
+                let newCart = [newProduct]
                 setCart(newCart)
                 setMessage("Produto adicionado no carrinho")
                 setAlert(true)
                 showAlert()
-          //  } else {
-           //     setMessage("Produto ja consta no carrinho")
-           //     setAlert(true)
-           //     showAlert()
-          //  }
+                setPedido("")
+                for (let prod of cart) {
+                    let prods = `" => Produto solicitado:" id=${prod.id} nome=${prod.nome} qtd=${prod.quantidade}`;
+                    let newMessage = prods + pedido
+                    setPedido(newMessage)
+                }
+                console.log("pedido", pedido)
+            }
 
         })
 

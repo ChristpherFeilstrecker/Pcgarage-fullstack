@@ -1,4 +1,6 @@
-import { useContext } from "react";
+import axios from "axios";
+import { useContext, useState } from "react";
+import { BASE_URL } from "../../components/constants/BaseURL";
 //import { useNavigate } from "react-router-dom";
 import GlobalContext from "../../components/global/globalContext";
 import "./StyledAssistancePage.css";
@@ -7,7 +9,25 @@ import "./StyledAssistancePage.css";
 export default function AssistancePage() {
  //   let navigate = useNavigate();
     const data = useContext(GlobalContext);
-    let videos = data.videos
+
+    const useRequestData = (url) => {
+        const [data, setData] = useState();
+        let urlLink = url
+       
+            axios
+                .get(urlLink)
+                .then((response) => {
+                    setData(response.data);
+                })
+                .catch((error) => {
+                    console.log("erro", error)
+                });
+    
+        return data;
+    
+    }
+
+    let videos = useRequestData(BASE_URL + "/videos")
 
 let listVideos = videos && videos
 .map((video)=>{
@@ -26,41 +46,8 @@ return<div key={video.id} className="video-container">
 
         {listVideos}
         
-        <div className="video-container">
-            <iframe width="380" height="200" src="https://www.youtube.com/embed/3Wf29RiKp70" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
-            <div className="title-video-container">Titulo Video</div>
-            <div className="text-video-container">Descrição do video</div>
-        </div>
-
-        <div className="video-container">
-            <iframe width="380" height="200" src="https://www.youtube.com/embed/s88r_q7oufE?list=RDs88r_q7oufE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
-            <div className="title-video-container">Titulo Video</div>
-            <div className="text-video-container">Descrição do video</div>
-        </div>
-
-        <div className="video-container">
-            <iframe width="380" height="200" src="https://www.youtube.com/embed/SBjQ9tuuTJQ?list=RDs88r_q7oufE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
-            <div className="title-video-container">Titulo Video</div>
-            <div className="text-video-container">Descrição do video</div>
-        </div>
-
-        <div className="video-container">
-            <iframe width="380" height="200" src="https://www.youtube.com/embed/hTWKbfoikeg?list=RDs88r_q7oufE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
-            <div className="title-video-container">Titulo Video</div>
-            <div className="text-video-container">Descrição do video</div>
-        </div>
-
-        <div className="video-container">
-            <iframe width="380" height="200" src="https://www.youtube.com/embed/CDl9ZMfj6aE?list=RDs88r_q7oufE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
-            <div className="title-video-container">Titulo Video</div>
-            <div className="text-video-container">Descrição do video</div>
-        </div>
-
-
-
     </div>
    
-
 </div>
     )
 }

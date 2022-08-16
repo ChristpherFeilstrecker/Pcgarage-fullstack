@@ -1,16 +1,35 @@
 import { SubTitleTagB } from "../../../../StyledGlobal";
 import "./StyledIntroSection2.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import GlobalContext from "../../../../components/global/globalContext";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { BASE_URL } from "../../../../components/constants/BaseURL";
 
 
 export default function IntroSection2() {
   const navigate = useNavigate();
   const data = useContext(GlobalContext);
-  const galerias = data.galerias
   const setTitle = data.setTitle
   const setSearch = data.setSearch
+
+  const useRequestData = (url) => {
+    const [data, setData] = useState();
+    let urlLink = url
+   
+        axios
+            .get(urlLink)
+            .then((response) => {
+                setData(response.data);
+            })
+            .catch((error) => {
+                console.log("erro", error)
+            });
+
+    return data;
+
+}
+const galerias = useRequestData(BASE_URL + "/galerias")
 
   const setSearchFunction=(galeri)=>{
     console.log("id",galeri)

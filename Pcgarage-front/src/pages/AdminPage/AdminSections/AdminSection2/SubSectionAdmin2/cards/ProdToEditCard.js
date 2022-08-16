@@ -9,11 +9,28 @@ import useForm from "../../../../../../components/hooks/useForm";
 export default function ProdToEditCard(props) {
     let navigate = useNavigate();
     const data = useContext(GlobalContext);
-    let galerias = data.galerias
     let toEdit = data.toEdit
- //   let galerias = data.galerias
     let prodSel = props.prodSel
     let [message, setMessage] = useState("")
+
+    const useRequestData = (url) => {
+        const [data, setData] = useState();
+        let urlLink = url
+       
+            axios
+                .get(urlLink)
+                .then((response) => {
+                    setData(response.data);
+                })
+                .catch((error) => {
+                    console.log("erro", error)
+                });
+    
+        return data;
+    
+    }
+
+    const galerias = useRequestData(BASE_URL + "/galerias")
 
     const goToApp = () => {
         navigate("/admin/painel_de_controle")
@@ -57,7 +74,7 @@ export default function ProdToEditCard(props) {
         setMessage("Destaque editado com sucesso");
         setTimeout(() => {
             setMessage("")
-           //document.location.reload(true);
+            document.location.reload(true);
         }, 1000)
 
     }
@@ -79,7 +96,7 @@ export default function ProdToEditCard(props) {
             await axios.post(BASE_URL+"/upload", formData, headers)
                 .then((response) => {
   console.log("entrou",response.data)                  
-                    url = "http://lojapcgarage.com.br:21046/files/" + response.data
+                    url = BASE_URL+"/files/"+response.data
                 }).catch((err) => {
                     setMessage("Erro ao coletar imagem, formatos aceitos, JPG, PNG e JPEG");
                 })

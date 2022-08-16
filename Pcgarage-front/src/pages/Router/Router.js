@@ -11,7 +11,7 @@ import ContactPage from '../ContactPage/ContactPage'
 import CartPage from '../CartPage/CartPage'
 import ErrorPage from '../ErrorPage/ErrorPage'
 import DetailProductPage from '../DetailProductPage/DetailProductPage';
-import logo from '../../images/pclogo.jpg';
+import logo from '../../images/pclogo.png';
 import iconWhats from '../../images/whatsapp-fixed.png';
 import AdminPage from '../AdminPage/AdminPage';
 import GlobalContext from '../../components/global/globalContext';
@@ -25,7 +25,7 @@ export const Router = () => {
   
 
 useEffect(()=>{
-  setSplash(false)
+  setSplash(true)
   setTimeout(()=>{
     setSplash(false)
   },4000)

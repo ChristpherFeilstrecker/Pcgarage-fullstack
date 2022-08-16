@@ -9,7 +9,6 @@ const useRequestData = (url) => {
         axios
             .get(urlLink)
             .then((response) => {
-
                 setData(response.data);
             })
             .catch((error) => {

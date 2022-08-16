@@ -4,17 +4,18 @@ import useRequestData from "../hooks/useRequestData";
 import { BASE_URL } from "../constants/BaseURL";
 
 export default function GlobalState(props) {
-   let [cart, setCart] = useState([])
+    let [cart, setCart] = useState([""])
     const [prodToDetail, setProdToDetail] = useState([""])
     let [refresh, setRefresh] = useState(false)
-    let [toAdd, setToAdd]= useState("")
-    let [toEdit, setToEdit]= useState("")
+    let [toAdd, setToAdd] = useState("")
+    let [toEdit, setToEdit] = useState("")
     let [search, setSearch] = useState("TODOS PRODUTOS");
     let [title, setTitle] = useState("TODOS PRODUTOS");
+    let [pedido, setPedido] = useState("")
 
 
 
-    const galerias = useRequestData(BASE_URL+"/galerias")
+    const galerias = useRequestData(BASE_URL + "/galerias")
 
     const parametros = useRequestData(BASE_URL + "/informacoes")
 
@@ -58,20 +59,6 @@ export default function GlobalState(props) {
 
     })
 
-    /*
-    let allProducts = {
-        products: [
-            {
-                id: "001",
-                nome: "Bottons",
-                descricao: "Diversas pesonalizações",
-                imagem: botton,
-                referencia: "cc 17001",
-
-            }
-        ]
-    }
-    */
 
     useEffect(() => {
         const data = localStorage.getItem('cart')
@@ -80,8 +67,20 @@ export default function GlobalState(props) {
         }
     }, [])
 
+
     useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify({cart}))
+        localStorage.setItem('cart', JSON.stringify({ cart }))
+        
+        if (Array.isArray(cart)) {
+            let nextPedido = ""
+            for (let prod of cart) {
+                let prods = `" => Produto:" nome=${prod.nome} qtd=${prod.quantidade}`;
+                let newMessage = prods + nextPedido
+                nextPedido = newMessage
+            }
+            setPedido(nextPedido)
+        }
+        
     }, [cart])
 
 
@@ -113,14 +112,16 @@ export default function GlobalState(props) {
         setRefresh,
         toAdd,
         setToAdd,
-        toEdit, 
+        toEdit,
         setToEdit,
         usuarios,
         videos,
-        search, 
+        search,
         setSearch,
-        title, 
-        setTitle
+        title,
+        setTitle,
+        pedido,
+        setPedido
     }
 
     return (<GlobalContext.Provider value={data}>

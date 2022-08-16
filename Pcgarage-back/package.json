@@ -1,16 +1,16 @@
 {
-  "name": "api-test-pcgarage",
+  "name": "api-pcgarage",
   "version": "1.0.0",
   "description": "api-test-pcgarage",
-  "main": "index.js",
+  "main": "indexApp.js",
   "scripts": {
-    "start": "tsc & node build/index.js",
+    "start": "tsc & node build/indexApp.js",
     "build": "tsc",
-    "dev": "tsnd src/index.ts"
+    "dev": "tsnd src/indexApp.ts"
   },
   "keywords": [
     "api",
-    "api-test-pcgarage"
+    "api-pcgarage"
   ],
   "author": "Christopher Feilstrecker",
   "license": "ISC",

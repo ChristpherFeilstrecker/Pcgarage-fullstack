@@ -1,12 +1,32 @@
 import "./StyledFooter.css";
 import iconPhone from "../../images/icon-phone.png"
 import iconEmail from "../../images/icon-letter.png"
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import GlobalContext from "../../components/global/globalContext";
+import axios from "axios";
+import { BASE_URL } from "../../components/constants/BaseURL";
 
 export default function Footer() {
     const data = useContext(GlobalContext);
-    const parametros = data.parametros
+   
+    const useRequestData = (url) => {
+        const [data, setData] = useState();
+        let urlLink = url
+       
+            axios
+                .get(urlLink)
+                .then((response) => {
+                    setData(response.data);
+                })
+                .catch((error) => {
+                    console.log("erro", error)
+                });
+    
+        return data;
+    
+    }
+
+    const parametros = useRequestData(BASE_URL + "/informacoes")
 
     return (
         <div id="footer">
