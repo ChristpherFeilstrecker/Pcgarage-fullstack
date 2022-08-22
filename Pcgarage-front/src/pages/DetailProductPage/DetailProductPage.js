@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 //import { useNavigate } from "react-router-dom";
 import GlobalContext from "../../components/global/globalContext";
 import "./StyledDetailProductPage.css";
@@ -22,6 +22,8 @@ import iconPointerBlue from "../../images/icon-pointer-blue.png"
 
 import arrowLeft from "../../images/arrow-to-left.png"
 import arrowRigth from "../../images/arrow-to-rigth.png"
+import { BASE_URL } from "../../components/constants/BaseURL";
+import axios from "axios";
 
 
 export default function DetailProductPage(props) {
@@ -31,19 +33,62 @@ export default function DetailProductPage(props) {
     const setCart = data.setCart;
     let pedido = data.pedido;
     const setPedido = data.setPedido;
-    const prodToDetail = data.prodToDetail;
+    //const prodToDetail = data.prodToDetail;
+    let [produToDetail, setProduTodetail] = useState("")
     let [qtd, setQtd] = useState("1")
     const [alert, setAlert] = useState(false)
     const [message, setMessage] = useState("")
     const [imgIndex, setImgIndex] = useState(0)
     const images = []
     const imgs = []
-    //const params = window.location.search.substring(1).split(':');
-    //const products = data.allProducts.products
-    // const produtos = data.produtos
+
+    const useRequestData = (url) => {
+        const [data, setData] = useState();
+        let urlLink = url
+
+        useEffect((url) => {
+            axios
+                .get(urlLink)
+                .then((response) => {
+                    setData(response.data);
+                })
+                .catch((error) => {
+                    console.log("erro", error)
+                });
+        }, [url, urlLink]);
+
+        return data;
+
+    }
+
+    const parametros = useRequestData(BASE_URL + "/informacoes")
+
+
+    const produtos = useRequestData(BASE_URL + "/produtos")// recebe a lista do produto do BD
+    const params = window.location.search.substring(1).split(':'); // pega o id por params do produto selecionado
+    const index = produtos && produtos.findIndex((i) => params && params[0] === i.id) // recebe a lista de produtos e retorna qual index do id recebido por params
+    const prodToDetail = produtos && produtos[index]
+
+    const ToDetail = () => {
+        if (produtos) {
+            for (let product of produtos) {
+                if (product.id === params[0]) {
+                    setProduTodetail(product)
+
+                    return product
+                }
+            }
+        }
+    }
+
+
+    useEffect((url) => {
+        ToDetail()
+    });
 
     const pushImgsToArray = (() => {
-        if (prodToDetail.imagem1) {
+
+        if (prodToDetail && prodToDetail.imagem1) {
             const modelToMiniImg = {
                 id: "",
                 img: ""
@@ -55,7 +100,7 @@ export default function DetailProductPage(props) {
 
         }
 
-        if (prodToDetail.imagem2) {
+        if (prodToDetail && prodToDetail.imagem2) {
             const modelToMiniImg = {
                 id: "",
                 img: ""
@@ -66,7 +111,7 @@ export default function DetailProductPage(props) {
             images.push(prodToDetail.imagem2)
         }
 
-        if (prodToDetail.imagem3) {
+        if (prodToDetail && prodToDetail.imagem3) {
             const modelToMiniImg = {
                 id: "",
                 img: ""
@@ -77,7 +122,7 @@ export default function DetailProductPage(props) {
             images.push(prodToDetail.imagem3)
         }
 
-        if (prodToDetail.imagem4) {
+        if (prodToDetail && prodToDetail.imagem4) {
             const modelToMiniImg = {
                 id: "",
                 img: ""
@@ -88,7 +133,7 @@ export default function DetailProductPage(props) {
             images.push(prodToDetail.imagem4)
         }
 
-        if (prodToDetail.imagem5) {
+        if (prodToDetail && prodToDetail.imagem5) {
             const modelToMiniImg = {
                 id: "",
                 img: ""
@@ -134,8 +179,8 @@ export default function DetailProductPage(props) {
             }
 
             if (Array.isArray(cart)) {
-               
-                    let index = cart && cart.findIndex(i => i.id === prodToDetail.id)
+
+                let index = cart && cart.findIndex(i => i.id === prodToDetail.id)
 
                 if (index === -1) {
                     let newCart = [...cart, newProduct]
@@ -144,7 +189,7 @@ export default function DetailProductPage(props) {
                     setAlert(true)
                     showAlert()
                     setPedido("")
-                    
+
                 } else {
                     setMessage("Produto ja consta no carrinho")
                     setAlert(true)
@@ -156,13 +201,6 @@ export default function DetailProductPage(props) {
                 setMessage("Produto adicionado no carrinho")
                 setAlert(true)
                 showAlert()
-                setPedido("")
-                for (let prod of cart) {
-                    let prods = `" => Produto solicitado:" id=${prod.id} nome=${prod.nome} qtd=${prod.quantidade}`;
-                    let newMessage = prods + pedido
-                    setPedido(newMessage)
-                }
-                console.log("pedido", pedido)
             }
 
         })
@@ -188,7 +226,7 @@ export default function DetailProductPage(props) {
             }, 4000)
         }
 
-        const listImgs = imgs
+        const listImgs = imgs && imgs
             .map((img) => {
                 return <div key={img.id} onClick={() => setImgIndex(img.id)} className="img-container">
                     <img className="mini-img" src={img.img} alt="produto" />
@@ -197,19 +235,27 @@ export default function DetailProductPage(props) {
 
         return <div>
             <div className="title-detail-products-page">Detalhes do produto</div>
-            <div className="container-1-detail-products-page">
-                <div className="container-select-img">
-                    <img onClick={() => switchImgToRigth()} className="arrow" src={arrowLeft} alt="car-icon" />
-                    <img className="image-product-sector-1" src={imgs[imgIndex].img} alt={prodToDetail.nome} />
-                    <img onClick={() => switchImgToLeft()} className="arrow" src={arrowRigth} alt="car-icon" />
-                </div>
 
-                <div className="box-1-detail-products-page">
-                    <div>{prodToDetail.nome}</div>
-                    <div>{prodToDetail.descricao}</div>
-                    <div>{prodToDetail.observacao}</div>
+
+            {prodToDetail ?
+                <div className="container-1-detail-products-page">
+                    <div className="container-select-img">
+                        <img onClick={() => switchImgToRigth()} className="arrow" src={arrowLeft} alt="car-icon" />
+                        <img className="image-product-sector-1" src={prodToDetail && imgs[imgIndex].img} alt={"imagem produto"} />
+                        <img onClick={() => switchImgToLeft()} className="arrow" src={arrowRigth} alt="car-icon" />
+                    </div>
+
+                    <div className="box-1-detail-products-page">
+                        <div>{prodToDetail && prodToDetail.nome}</div>
+                        <div>{prodToDetail && prodToDetail.descricao}</div>
+                        <div>{prodToDetail && prodToDetail.observacao}</div>
+                    </div>
                 </div>
-            </div>
+                :
+                <div className="loader-container">
+                <div className="loader"></div>
+                </div>
+            }
             <div className="container-btn-product-detail-page">
                 <div className="mini-img-container">
                     {listImgs}
@@ -249,44 +295,47 @@ export default function DetailProductPage(props) {
                         <div className="rigth-box-title-contact-section-2">MIDIAS</div>
 
                         <div className="rigth-box-itens-contact-section-2">
-                            <div className="rigth-box-icon-contact-section-2">
-                                <img className="rigth-icon-contact-section-2" src={iconFacebookBlack} alt="facebook-icon" />
-                                <img className="rigth-sub-icon-contact-section-2" src={iconFacebookBlue} alt="facebook-icon" />
-                            </div>
-                            <div className="rigth-box-icon-contact-section-2">
-                                <img className="rigth-icon-contact-section-2" src={iconTwiterBlack} alt="twiter-icon" />
-                                <img className="rigth-sub-icon-contact-section-2" src={iconTwiterBlue} alt="twiter-icon" />
-                            </div>
-                            <div className="rigth-box-icon-contact-section-2">
-                                <img className="rigth-icon-contact-section-2" src={iconInstaBlack} alt="insta-icon" />
-                                <img className="rigth-sub-icon-contact-section-2" src={iconInstaBlue} alt="insta-icon" />
-                            </div>
-                            <div className="rigth-box-icon-contact-section-2">
-                                <img className="rigth-icon-contact-section-2" src={iconGoogleBlack} alt="google-icon" />
-                                <img className="rigth-sub-icon-contact-section-2" src={iconGoogleBlue} alt="google-icon" />
-                            </div>
 
+                            <a href={parametros && parametros[0].facebook} target="_blank">
+                                <div className="rigth-box-icon-contact-section-2">
+                                    <img className="rigth-icon-contact-section-2" src={iconFacebookBlack} alt="facebook-icon" />
+                                    <img className="rigth-sub-icon-contact-section-2" src={iconFacebookBlue} alt="facebook-icon" />
+                                </div>
+                            </a>
+                            <a href={parametros && parametros[0].instagram} target="_blank">
+                                <div className="rigth-box-icon-contact-section-2">
+                                    <img className="rigth-icon-contact-section-2" src={iconInstaBlack} alt="insta-icon" />
+                                    <img className="rigth-sub-icon-contact-section-2" src={iconInstaBlue} alt="insta-icon" />
+                                </div>
+                            </a>
+
+                            <a href={parametros && parametros[0].youtube} target="_blank">
+                                <div className="rigth-box-icon-contact-section-2">
+                                    <img className="rigth-icon-contact-section-2" src={iconGoogleBlack} alt="google-icon" />
+                                    <img className="rigth-sub-icon-contact-section-2" src={iconGoogleBlue} alt="google-icon" />
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <div className="rigth-block-contact-section-2">
                         <div className="rigth-box-title-contact-section-2">TELEFONE</div>
                         <div className="rigth-box-itens-contact-section-2">
                             <img className="rigth-icon-contact-section-2" src={iconPhoneBlue} alt="letter-icon" />
-                            <div className="rigth-box-text-contact-section-2">51 99999-9999 | 9999-9999</div>
+                            <div className="rigth-box-text-contact-section-2">{parametros && parametros[0].celular} | {parametros && parametros[0].telefone}</div>
                         </div>
                     </div>
                     <div className="rigth-block-contact-section-2">
                         <div className="rigth-box-title-contact-section-2">E-MAIL</div>
                         <div className="rigth-box-itens-contact-section-2">
                             <img className="rigth-icon-contact-section-2" src={iconLetterBlue} alt="letter-icon" />
-                            <div className="rigth-box-text-contact-section-2">comercial@comercial.com.br</div>
+                            <div className="rigth-box-text-contact-section-2">{parametros && parametros[0].email}</div>
                         </div>
                     </div>
                     <div className="rigth-last-block-contact-section-2">
                         <div className="rigth-box-title-contact-section-2">ENDEREÇO</div>
                         <div className="rigth-box-edress-contact-section-2">
                             <img className="rigth-icon-contact-section-2" src={iconPointerBlue} alt="letter-icon" />
-                            <div className="rigth-box-text-edress-contact-section-2">Rua Avenida, Número, Cidade, RS, CEP 00000-000</div>
+                            <div className="rigth-box-text-edress-contact-section-2">{parametros && parametros[0].endereco}</div>
                         </div>
                     </div>
                 </div>

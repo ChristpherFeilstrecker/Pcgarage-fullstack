@@ -20,14 +20,17 @@ export class InformationController {
 
    public async editInformation(req: Request, res: Response) {
       try {
-         const {id, telefone, celular, email, endereco } = req.body
+         const {id, telefone, celular, email, endereco, facebook, instagram,youtube } = req.body
 
          const result = await InformationBusiness.editInformation(
             id,
             telefone, 
             celular, 
             email, 
-            endereco
+            endereco, 
+            facebook, 
+            instagram,
+            youtube
          );
          res.status(200).send(result);
       } catch (error) {

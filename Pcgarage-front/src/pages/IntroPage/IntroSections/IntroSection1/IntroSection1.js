@@ -8,8 +8,6 @@ import axios from "axios";
 
 export default function IntroSection1() {
     const navigate = useNavigate();
-    const data = useContext(GlobalContext);
-    const parametros = data.parametros
 
     const useRequestData = (url) => {
         const [data, setData] = useState();
@@ -29,6 +27,7 @@ export default function IntroSection1() {
     }
 
     const destaques = useRequestData(BASE_URL + "/destaques")
+    const parametros = useRequestData(BASE_URL + "/informacoes")
 
     return (
         <div id="intro-section-1">

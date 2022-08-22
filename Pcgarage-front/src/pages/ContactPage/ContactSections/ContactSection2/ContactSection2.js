@@ -19,14 +19,36 @@ import iconGoogleBlue from "../../../../images/icon_google_blue.png"
 import iconLetterBlue from "../../../../images/icon-letter-blue.png"
 import iconPhoneBlue from "../../../../images/icon-phone-blue.png"
 import iconPointerBlue from "../../../../images/icon-pointer-blue.png"
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import GlobalContext from "../../../../components/global/globalContext";
+import axios from "axios";
+import { BASE_URL } from "../../../../components/constants/BaseURL";
 
 export default function ContactSection2() {
     let navigate = useNavigate();
     
     const data = useContext(GlobalContext);
-    const parametros = data.parametros
+    
+    const useRequestData = (url) => {
+        const [data, setData] = useState();
+        let urlLink = url
+
+        useEffect((url) => {
+            axios
+                .get(urlLink)
+                .then((response) => {
+                    setData(response.data);
+                })
+                .catch((error) => {
+                    console.log("erro", error)
+                });
+        }, [url, urlLink]);
+
+        return data;
+
+    }
+
+    const parametros = useRequestData(BASE_URL + "/informacoes")
 
     //console.log('PARAMETROS',parametros)
     const [form, onChange, clear] = useForm({ name: "",email: "", celPhone: "",phone: "" , message: "" })
@@ -118,22 +140,25 @@ export default function ContactSection2() {
                         <div className="rigth-box-title-contact-section-2">MIDIAS</div>
 
                         <div className="rigth-box-itens-contact-section-2">
+                        <a href={parametros && parametros[0].facebook} target="_blank">
                             <div className="rigth-box-icon-contact-section-2">
-                               <img className="rigth-icon-contact-section-2" src={iconFacebookBlack} alt="facebook-icon"/> 
-                               <img className="rigth-sub-icon-contact-section-2" src={iconFacebookBlue} alt="facebook-icon"/>
+                                <img className="rigth-icon-contact-section-2" src={iconFacebookBlack} alt="facebook-icon" />
+                                <img className="rigth-sub-icon-contact-section-2" src={iconFacebookBlue} alt="facebook-icon" />
                             </div>
+                         </a>   
+                         <a href={parametros && parametros[0].instagram} target="_blank">
                             <div className="rigth-box-icon-contact-section-2">
-                               <img className="rigth-icon-contact-section-2" src={iconTwiterBlack} alt="twiter-icon"/> 
-                               <img className="rigth-sub-icon-contact-section-2" src={iconTwiterBlue} alt="twiter-icon"/>
+                                <img className="rigth-icon-contact-section-2" src={iconInstaBlack} alt="insta-icon" />
+                                <img className="rigth-sub-icon-contact-section-2" src={iconInstaBlue} alt="insta-icon" />
                             </div>
+                        </a> 
+
+                        <a href={parametros && parametros[0].youtube} target="_blank"> 
                             <div className="rigth-box-icon-contact-section-2">
-                               <img className="rigth-icon-contact-section-2" src={iconInstaBlack} alt="insta-icon"/> 
-                               <img className="rigth-sub-icon-contact-section-2" src={iconInstaBlue} alt="insta-icon"/>
+                                <img className="rigth-icon-contact-section-2" src={iconGoogleBlack} alt="google-icon" />
+                                <img className="rigth-sub-icon-contact-section-2" src={iconGoogleBlue} alt="google-icon" />
                             </div>
-                            <div className="rigth-box-icon-contact-section-2">
-                               <img className="rigth-icon-contact-section-2" src={iconGoogleBlack} alt="google-icon"/> 
-                               <img className="rigth-sub-icon-contact-section-2" src={iconGoogleBlue} alt="google-icon"/>
-                            </div>
+                        </a> 
                             
                         </div>
                     </div>

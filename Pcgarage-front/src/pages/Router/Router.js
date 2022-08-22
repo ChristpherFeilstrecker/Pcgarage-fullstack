@@ -15,13 +15,32 @@ import logo from '../../images/pclogo.png';
 import iconWhats from '../../images/whatsapp-fixed.png';
 import AdminPage from '../AdminPage/AdminPage';
 import GlobalContext from '../../components/global/globalContext';
+import axios from 'axios';
+import { BASE_URL } from '../../components/constants/BaseURL';
 
 export const Router = () => {
   const data = useContext(GlobalContext);
-    const parametros = data.parametros
+   // const parametros = data.parametros
   const [splash, setSplash] = useState(false)
   let [productID, setProductID] = useState('001')
 
+  const useRequestData = (url) => {
+    const [data, setData] = useState();
+    let urlLink = url
+   
+        axios
+            .get(urlLink)
+            .then((response) => {
+                setData(response.data);
+            })
+            .catch((error) => {
+                console.log("erro", error)
+            });
+
+    return data;
+
+}
+const parametros = useRequestData(BASE_URL + "/informacoes")
   
 
 useEffect(()=>{

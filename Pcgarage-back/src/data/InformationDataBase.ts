@@ -96,4 +96,61 @@ export class InformationDatabase extends BaseDataBase {
       }
    }
 
+   public async editInformationFacebook(
+      id: String,
+      facebook: String
+        
+     ): Promise<void | any> {
+      try {
+         let query = `UPDATE \`${this.tableName}\` SET \`facebook\`="${facebook}" WHERE \`id\`="${id}";`
+  
+         const result = await BaseDataBase.connection.raw(
+           query
+         );
+  
+      } catch (error) {
+         if (error instanceof Error) {
+            throw new Error(error.message)
+         }
+      }
+   }
+
+   public async editInformationInstagram(
+      id: String,
+      instagram: String
+        
+     ): Promise<void | any> {
+      try {
+         let query = `UPDATE \`${this.tableName}\` SET \`instagram\`="${instagram}" WHERE \`id\`="${id}";`
+  
+         const result = await BaseDataBase.connection.raw(
+           query
+         );
+  
+      } catch (error) {
+         if (error instanceof Error) {
+            throw new Error(error.message)
+         }
+      }
+   }
+
+   public async editInformationYoutube(
+      id: String,
+      youtube: String
+        
+     ): Promise<void | any> {
+      try {
+         let query = `UPDATE \`${this.tableName}\` SET \`youtube\`="${youtube}" WHERE \`id\`="${id}";`
+  
+         const result = await BaseDataBase.connection.raw(
+           query
+         );
+  
+      } catch (error) {
+         if (error instanceof Error) {
+            throw new Error(error.message)
+         }
+      }
+   }
+
 }

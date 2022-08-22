@@ -14,7 +14,7 @@ export default function GlobalState(props) {
     let [pedido, setPedido] = useState("")
 
 
-
+/*
     const galerias = useRequestData(BASE_URL + "/galerias")
 
     const parametros = useRequestData(BASE_URL + "/informacoes")
@@ -26,7 +26,7 @@ export default function GlobalState(props) {
     let usuarios = useRequestData(BASE_URL + "/admin")
 
     let videos = useRequestData(BASE_URL + "/videos")
-
+*/
     const removeFromCart = (item) => {
         const index = cart.findIndex((i) => item.id === i.id)
         const newCart = [...cart]
@@ -74,7 +74,7 @@ export default function GlobalState(props) {
         if (Array.isArray(cart)) {
             let nextPedido = ""
             for (let prod of cart) {
-                let prods = `" => Produto:" nome=${prod.nome} qtd=${prod.quantidade}`;
+                let prods = `-> Produto:${prod.nome} quantidade=${prod.quantidade}`;
                 let newMessage = prods + nextPedido
                 nextPedido = newMessage
             }
@@ -83,29 +83,12 @@ export default function GlobalState(props) {
         
     }, [cart])
 
-
-    useEffect(() => {
-        const prodToDetail = localStorage.getItem('prodToDetail')
-        if (prodToDetail) {
-            setProdToDetail(JSON.parse(prodToDetail))
-        }
-    }, [])
-
-    useEffect(() => {
-        localStorage.setItem('prodToDetail', JSON.stringify(prodToDetail))
-    }, [prodToDetail])
-
-
     const data = {
         cart,
         setCart,
         removeFromCart,
         addCountProduct,
         removeCountProduct,
-        galerias,
-        parametros,
-        produtos,
-        destaques,
         prodToDetail,
         setProdToDetail,
         refresh,
@@ -114,8 +97,6 @@ export default function GlobalState(props) {
         setToAdd,
         toEdit,
         setToEdit,
-        usuarios,
-        videos,
         search,
         setSearch,
         title,

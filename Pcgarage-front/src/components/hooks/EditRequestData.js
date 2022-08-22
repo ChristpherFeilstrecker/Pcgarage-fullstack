@@ -12,7 +12,7 @@ const editDestaqueData = (url,body) => {
                 data=response.data;
             })
             .catch((error) => {
-                console.log("erro", error.response.data)
+                console.log("erro", error.response)
             });
   
     return data;

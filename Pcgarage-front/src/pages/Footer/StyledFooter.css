@@ -38,6 +38,7 @@
     justify-content: flex-start;
     gap:1vw;
     height: 40%;
+    width: 25rem;
 }
 .footer-icon-box{
     background: rgba(255, 255, 255, 0.2);
@@ -59,6 +60,10 @@
     border-top-style: solid;
     border-top-color: rgb(214, 207, 207, 0.2);
     display: flex;
+}
+
+.footer-email{
+    
 }
 
 

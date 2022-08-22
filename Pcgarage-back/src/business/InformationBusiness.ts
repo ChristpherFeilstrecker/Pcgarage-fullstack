@@ -33,17 +33,16 @@ export class InformationBusiness {
       telefone: String,
       celular: String,
       email: String,
-      endereco: String
+      endereco: String,
+      facebook: String,
+      instagram: String,
+      youtube: String
 
    ) {
       try {
 
          if (!id ) {
             throw new Error("Business - Necessário informar um ID válido");
-         }
-
-         if (!telefone && !celular && !email  && !endereco ) {
-            throw new Error("Business - Necessário informar no mínimo um atributo para editar");
          }
 
          if(telefone){
@@ -71,6 +70,27 @@ export class InformationBusiness {
             const highlights = await this.informationDatabase.editInformationEndereco(
                id,
                endereco
+            );
+         }
+
+         if(facebook){
+            const highlights = await this.informationDatabase.editInformationFacebook(
+               id,
+               facebook
+            );
+         }
+
+         if(instagram){
+            const highlights = await this.informationDatabase.editInformationInstagram(
+               id,
+               instagram
+            );
+         }
+
+         if(youtube){
+            const highlights = await this.informationDatabase.editInformationYoutube(
+               id,
+               youtube
             );
          }
 

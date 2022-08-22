@@ -1,7 +1,7 @@
 import "./StyledFooter.css";
 import iconPhone from "../../images/icon-phone.png"
 import iconEmail from "../../images/icon-letter.png"
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import GlobalContext from "../../components/global/globalContext";
 import axios from "axios";
 import { BASE_URL } from "../../components/constants/BaseURL";
@@ -13,6 +13,7 @@ export default function Footer() {
         const [data, setData] = useState();
         let urlLink = url
        
+        useEffect((url) => {
             axios
                 .get(urlLink)
                 .then((response) => {
@@ -21,6 +22,7 @@ export default function Footer() {
                 .catch((error) => {
                     console.log("erro", error)
                 });
+        }, [url, urlLink]);
     
         return data;
     

@@ -21,21 +21,15 @@ const productsController = new ProductsController();
 const videosController = new VideosController();
 const adminController = new AdminController();
 
-/*
-const baseDir = `${__dirname}/app/admin/build/`
-PCGarageRouter.use(express.static(`${baseDir}`))
-PCGarageRouter.get('/', (req, res) => 
-           res.sendfile('index.html' , { root : baseDir }))
-*/
 
 //teste rota principal
-
 PCGarageRouter.get("/", 
  (a,b) => {
-     b.send('<p>teste back PC garage</p>');
+     b.send('<p>teste app PC garage</p>');
  }
  );
 
+ //PCGarageRouter.use("/files", express.static(`src/uploads`));
 
 PCGarageRouter.get("/admin", adminController.admin);//Retorna email e senha administrador - OK(Funcional)
 PCGarageRouter.post("/addadmin", adminController.addadmin); //cria admin - OK(FUNCIONAL)

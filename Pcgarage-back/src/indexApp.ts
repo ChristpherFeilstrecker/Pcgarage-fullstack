@@ -19,8 +19,8 @@ const path = require('path')
 
 app.use(express.json());
 
-// src/uploads
-app.use("/app/files", express.static("src/uploads"));
+// libera acesso aos arquivos
+app.use("/files", express.static(`src/uploads`));
 
 app.use("/app",PCGarageRouter);
 
@@ -46,4 +46,4 @@ const server = app.listen(process.env.PORT || 3003, () => {
     console.error(`Falha ao rodar o servidor.`);
   }
 })
-//http://localhost:process.env.PORT || 
+//http://localhost:

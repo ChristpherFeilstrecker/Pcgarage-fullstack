@@ -1,7 +1,9 @@
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../../../../../components/constants/BaseURL";
+import { FILE_BASE_URL } from "../../../../../../components/constants/FileBaseUrl";
+import { UPLOAD_BASE_URL } from "../../../../../../components/constants/UploadBaseUrl";
 import GlobalContext from "../../../../../../components/global/globalContext";
 import EditRequestData from "../../../../../../components/hooks/EditRequestData";
 import useForm from "../../../../../../components/hooks/useForm";
@@ -17,6 +19,7 @@ export default function ProdToEditCard(props) {
         const [data, setData] = useState();
         let urlLink = url
        
+        useEffect((url) => {
             axios
                 .get(urlLink)
                 .then((response) => {
@@ -25,6 +28,7 @@ export default function ProdToEditCard(props) {
                 .catch((error) => {
                     console.log("erro", error)
                 });
+        }, [url, urlLink]);
     
         return data;
     
@@ -55,21 +59,10 @@ export default function ProdToEditCard(props) {
 
     const [imageEditDestaque, setImageEditDestaque] = useState("")
 
-    const EditDestaquesBD = (url) => {
-        let body = {
-            id:prodSel && prodSel.id,
-            nome: formEditDestaque.nome,
-            descricao: formEditDestaque.descricao,
-            preco: formEditDestaque.preco,
-            imagem: prodSel && prodSel.imagem
-        }
-        
-
-        if (url) {
-            body.imagem = url
-        }
+    const EditDestaquesBD = (body) => {
         
         EditRequestData(BASE_URL + "/editardestaque", body)
+
         document.getElementById("inputFile").value = "";
         setMessage("Destaque editado com sucesso");
         setTimeout(() => {
@@ -82,27 +75,33 @@ export default function ProdToEditCard(props) {
 
     let editDestaque = async e => {
         e.preventDefault()
-        let url = false
+        let body = {
+            id:prodSel && prodSel.id,
+            nome: formEditDestaque.nome,
+            descricao: formEditDestaque.descricao,
+            preco: formEditDestaque.preco,
+            imagem: prodSel && prodSel.imagem
+        }
+
         if (imageEditDestaque !== "") {
             const formData = new FormData();
             formData.append('image', imageEditDestaque);
-
             const headers = {
                 'headers': {
                     'Content-Type': 'application/json'
                 }
             }
 
-            await axios.post(BASE_URL+"/upload", formData, headers)
-                .then((response) => {
-  console.log("entrou",response.data)                  
-                    url = BASE_URL+"/files/"+response.data
+            await axios.post(UPLOAD_BASE_URL+"/upload", formData, headers)
+                .then((response) => { 
+                    body.imagem = FILE_BASE_URL+response.data
                 }).catch((err) => {
+                    
                     setMessage("Erro ao coletar imagem, formatos aceitos, JPG, PNG e JPEG");
                 })
         }
         
-        EditDestaquesBD(url)
+        EditDestaquesBD(body)
 
     }
 
@@ -153,10 +152,10 @@ export default function ProdToEditCard(props) {
                 }
             }
 
-            await axios.post(BASE_URL+"/upload", formData, headers)
+            await axios.post(UPLOAD_BASE_URL+"/upload", formData, headers)
                 .then((response) => {
                     
-                    url = BASE_URL + "/files/" + response.data
+                    url = FILE_BASE_URL + response.data
                 }).catch((err) => {
                     setMessage("Erro ao coletar imagem, formatos aceitos, JPG, PNG e JPEG");
                 })
@@ -221,7 +220,7 @@ export default function ProdToEditCard(props) {
         if (url5) {
             body.imagem5 = url5
         }
-        console.log("body",body)
+       
         EditRequestData(BASE_URL + "/editarproduto", body)
         document.getElementById("inputFile").value = "";
         setMessage("Produto editado com sucesso");
@@ -248,9 +247,9 @@ export default function ProdToEditCard(props) {
                     'Content-Type': 'application/json'
                 }
             }
-            await axios.post(BASE_URL+"/upload", formData, headers)
+            await axios.post(UPLOAD_BASE_URL+"/upload", formData, headers)
                 .then((response) => {
-                    url1 = BASE_URL + "/files/" + response.data
+                    url1 = FILE_BASE_URL + response.data
                 }).catch((err) => {
                     setMessage("Erro ao coletar imagem, formatos aceitos, JPG, PNG e JPEG");
                 })
@@ -263,9 +262,9 @@ export default function ProdToEditCard(props) {
                     'Content-Type': 'application/json'
                 }
             }
-            await axios.post(BASE_URL+"/upload", formData, headers)
+            await axios.post(UPLOAD_BASE_URL+"/upload", formData, headers)
                 .then((response) => {
-                    url2 = BASE_URL + "/files/" + response.data
+                    url2 = FILE_BASE_URL + response.data
                 }).catch((err) => {
                     setMessage("Erro ao coletar imagem, formatos aceitos, JPG, PNG e JPEG");
                 })
@@ -278,9 +277,9 @@ export default function ProdToEditCard(props) {
                     'Content-Type': 'application/json'
                 }
             }
-            await axios.post(BASE_URL+"/upload", formData, headers)
+            await axios.post(UPLOAD_BASE_URL+"/upload", formData, headers)
                 .then((response) => {
-                    url3 = BASE_URL + "/files/" + response.data
+                    url3 = FILE_BASE_URL + response.data
                 }).catch((err) => {
                     setMessage("Erro ao coletar imagem, formatos aceitos, JPG, PNG e JPEG");
                 })
@@ -293,9 +292,9 @@ export default function ProdToEditCard(props) {
                     'Content-Type': 'application/json'
                 }
             }
-            await axios.post(BASE_URL+"/upload", formData, headers)
+            await axios.post(UPLOAD_BASE_URL+"/upload", formData, headers)
                 .then((response) => {
-                    url4 = BASE_URL + "/files/" + response.data
+                    url4 = FILE_BASE_URL + response.data
                 }).catch((err) => {
                     setMessage("Erro ao coletar imagem, formatos aceitos, JPG, PNG e JPEG");
                 })
@@ -308,9 +307,9 @@ export default function ProdToEditCard(props) {
                     'Content-Type': 'application/json'
                 }
             }
-            await axios.post(BASE_URL+"/upload", formData, headers)
+            await axios.post(UPLOAD_BASE_URL+"/upload", formData, headers)
                 .then((response) => {
-                    url5 = BASE_URL + "/files/" + response.data
+                    url5 = FILE_BASE_URL + response.data
                 }).catch((err) => {
                     setMessage("Erro ao coletar imagem, formatos aceitos, JPG, PNG e JPEG");
                 })
@@ -612,6 +611,7 @@ export default function ProdToEditCard(props) {
                     
                     <div className="container-img">Imagem Atual 1:
                         <img className="actual-img" src={prodSel && prodSel.imagem1} alt="img" />
+                        <div>obs.:1ª imagem não pode ser excluida, só editada</div>
                     </div>
                     {img2()}
                     {img3()}

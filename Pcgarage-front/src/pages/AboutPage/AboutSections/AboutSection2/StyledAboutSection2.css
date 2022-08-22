@@ -58,6 +58,9 @@ ol {
 .left-container-about-section-2 {
     width: 65vw;
     padding: 0 2.5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .rigth-container-about-section-2 {
@@ -91,6 +94,7 @@ ol {
 .title-rigth-about-section-2 {
     font-size: 2vw;
     font-weight: 600;
+
 }
 
 .nav-container-rigth-about-section-2 {
@@ -152,7 +156,7 @@ ol {
 }
 
 .image-section-2{
-    width: 100%;
+    max-width: 30rem;
     padding-top: 2vw;
     margin-bottom: 4vw;
 }

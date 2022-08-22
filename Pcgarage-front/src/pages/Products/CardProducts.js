@@ -5,7 +5,7 @@ import GlobalContext from "../../components/global/globalContext";
 
 export default function CardProducts(props) {
     const data = useContext(GlobalContext);
-    const { nome, imagem1, descricao1 } = props.product
+    const { id,nome, imagem1, descricao1 } = props.product
     const [loading, setLoading] = useState(true)
     const setProdToDetail = data.setProdToDetail
     let navigate = useNavigate();
@@ -14,13 +14,14 @@ export default function CardProducts(props) {
         setTimeout(() => {
             setLoading(false)
         }, 1500)
+       
     }, [])
+    
 
-    const goToDetailPage =(()=>{
+    const goToDetailPage =((id)=>{
         setProdToDetail(props.product)
-        navigate("/detalhe_produto")
+        navigate(`/detalhe_produto?${id}`)
         window.scrollTo(0, 0)
-
     })
 
     return (
@@ -29,14 +30,15 @@ export default function CardProducts(props) {
                 {loading ?
                     <div className="loader"></div>
                     : <div className="product-sector-1">
-
-                        <img className="image-product-sector-1" src={imagem1} alt={nome} />
+                        
+                            <img className="image-product-sector-1" src={imagem1} alt={nome} />
+                        
                         <div className="detail-container-product-sector-1">
                             <div className="detail-product-sector-1">{nome}</div>
                             <div className="detail-product-sector-1">{descricao1}</div>
                         </div>
                         <div className="container-btn-product-sector-1">
-                            <div onClick={() => goToDetailPage()} className="btn-product-sector-1">
+                            <div onClick={() => goToDetailPage(id)} className="btn-product-sector-1">
                                 <div className="add-to-car-btn-text">Detalhes do produto </div>
                             </div>
                         </div>

@@ -1,13 +1,35 @@
 import "./StyledIntroSection3.css";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import GlobalContext from "../../../../components/global/globalContext";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { BASE_URL } from "../../../../components/constants/BaseURL";
 
 export default function IntroSection3() {
     let navigate = useNavigate();
     const data = useContext(GlobalContext);
-    let videos = data.videos
+    //let videos = data.videos
 
+    const useRequestData = (url) => {
+        const [data, setData] = useState();
+        let urlLink = url
+
+        useEffect((url) => {
+            axios
+                .get(urlLink)
+                .then((response) => {
+                    setData(response.data);
+                })
+                .catch((error) => {
+                    console.log("erro", error)
+                });
+        }, [url, urlLink]);
+
+        return data;
+
+    }
+
+    let videos = useRequestData(BASE_URL + "/videos")
     let goToVideos=()=>{
         navigate("/videos");
         window.scrollTo(0, 0)

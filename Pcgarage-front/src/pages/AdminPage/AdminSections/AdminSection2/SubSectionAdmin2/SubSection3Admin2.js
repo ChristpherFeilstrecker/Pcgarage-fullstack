@@ -1,13 +1,15 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import "./StyledSubSection3Admin2.css";
 import GlobalContext from "../../../../../components/global/globalContext";
 import useForm from "../../../../../components/hooks/useForm";
-import { BASE_URL } from "../../../../../components/constants/BaseURL";
+import { BASE_URL} from "../../../../../components/constants/BaseURL";
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import newRequestData from "../../../../../components/hooks/newRequestData";
 import { useProtectedPage } from "../../../../../components/hooks/useProtectPage";
+import { FILE_BASE_URL } from "../../../../../components/constants/FileBaseUrl";
+import { UPLOAD_BASE_URL } from "../../../../../components/constants/UploadBaseUrl";
 
 
 export default function SubSection3Admin2() {
@@ -23,6 +25,7 @@ export default function SubSection3Admin2() {
         const [data, setData] = useState();
         let urlLink = url
        
+        useEffect((url) => {
             axios
                 .get(urlLink)
                 .then((response) => {
@@ -31,6 +34,7 @@ export default function SubSection3Admin2() {
                 .catch((error) => {
                     console.log("erro", error)
                 });
+        }, [url, urlLink]);
     
         return data;
     
@@ -88,10 +92,10 @@ export default function SubSection3Admin2() {
             }
         }
 
-        await axios.post(BASE_URL+"/upload", formData, headers)
+        await axios.post(UPLOAD_BASE_URL+"/upload", formData, headers)
             .then((response) => {
                 
-                url = BASE_URL+"/files/" + response.data
+                url = FILE_BASE_URL + response.data
             }).catch((err) => {
                 setMessage("Erro ao coletar imagem, formatos aceitos, JPG, PNG e JPEG");
             })
@@ -146,10 +150,10 @@ export default function SubSection3Admin2() {
             }
         }
 
-        await axios.post(BASE_URL+"/upload", formData, headers)
+        await axios.post(UPLOAD_BASE_URL+"/upload", formData, headers)
             .then((response) => {
                 
-                url = BASE_URL+"/files/" + response.data
+                url = FILE_BASE_URL + response.data
             }).catch((err) => {
                
                 setMessage("Erro ao coletar imagem, formatos aceitos, JPG, PNG e JPEG");

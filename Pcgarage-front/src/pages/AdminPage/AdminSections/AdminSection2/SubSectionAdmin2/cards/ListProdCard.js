@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import delRequestData from "../../../../../../components/hooks/delRequestData"
 import { BASE_URL } from "../../../../../../components/constants/BaseURL";
@@ -19,6 +19,7 @@ export default function ListProdCard(props) {
         const [data, setData] = useState();
         let urlLink = url
        
+        useEffect((url) => {
             axios
                 .get(urlLink)
                 .then((response) => {
@@ -27,16 +28,17 @@ export default function ListProdCard(props) {
                 .catch((error) => {
                     console.log("erro", error)
                 });
+        }, [url, urlLink]);
     
         return data;
     
     }
 
-    const galerias = useRequestData(BASE_URL + "/galerias")
+    let galerias = useRequestData(BASE_URL + "/galerias")
 
-    const parametros = useRequestData(BASE_URL + "/informacoes")
+    let parametros = useRequestData(BASE_URL + "/informacoes")
 
-    const produtos = useRequestData(BASE_URL + "/produtos")
+    let produtos = useRequestData(BASE_URL + "/produtos")
 
     let destaques = useRequestData(BASE_URL + "/destaques")
 
@@ -52,7 +54,7 @@ export default function ListProdCard(props) {
 let tel = parametros && parametros[0].telefone
    // Informações para editar
 
-   const [formEditInfo, onChangeEditInfo] = useForm({ telefone: tel, celular: parametros && parametros[0].celular, email: parametros && parametros[0].email, endereco: parametros && parametros[0].endereco })
+   const [formEditInfo, onChangeEditInfo] = useForm({ telefone: tel, celular: parametros && parametros[0].celular, email: parametros && parametros[0].email, endereco: parametros && parametros[0].endereco, facebook: parametros && parametros[0].facebook, instagram: parametros && parametros[0].instagram, youtube: parametros && parametros[0].youtube })
 
    const EditInfoBD = e => {
        e.preventDefault()
@@ -61,10 +63,13 @@ let tel = parametros && parametros[0].telefone
            telefone: formEditInfo.telefone,
            celular: formEditInfo.celular,
            email: formEditInfo.email,
-           endereco: formEditInfo.endereco
+           endereco: formEditInfo.endereco,
+           facebook: formEditInfo.facebook,
+           instagram: formEditInfo.instagram,
+           youtube: formEditInfo.youtube,
        }
-       
-       EditRequestData(BASE_URL + "/editarinformacoes", body)
+       console.log("body",body)
+       EditRequestData(BASE_URL + "/editarinformacoes",body)
 
        setMessage("Informações editadas com sucesso");
        setTimeout(() => {
@@ -169,19 +174,19 @@ let tel = parametros && parametros[0].telefone
                     <div>
                         <div className="body-position-to-edit">
                             <div className="position-to-edit">1</div>
-                            <div onClick={()=>openProdToEdit(destaques[0])} className="position-name-edit">{destaques[0].nome}</div>
+                            <div onClick={()=>openProdToEdit(destaques && destaques[0])} className="position-name-edit">{destaques && destaques[0].nome}</div>
                         </div>
                         <div className="body-position-to-edit">
                             <div className="position-to-edit">2</div>
-                            <div onClick={()=>openProdToEdit(destaques[1])} className="position-name-edit">{destaques[1].nome}</div>
+                            <div onClick={()=>openProdToEdit(destaques && destaques[1])} className="position-name-edit">{destaques && destaques[1].nome}</div>
                         </div>
                         <div className="body-position-to-edit">
                             <div className="position-to-edit">3</div>
-                            <div onClick={()=>openProdToEdit(destaques[2])} className="position-name-edit">{destaques[2].nome}</div>
+                            <div onClick={()=>openProdToEdit(destaques && destaques[2])} className="position-name-edit">{destaques && destaques[2].nome}</div>
                         </div>
                         <div className="body-position-to-edit">
                             <div className="position-to-edit">4</div>
-                            <div onClick={()=>openProdToEdit(destaques[3])} className="position-name-edit">{destaques[3].nome}</div>
+                            <div onClick={()=>openProdToEdit(destaques && destaques[3])} className="position-name-edit">{destaques && destaques[3].nome}</div>
                         </div>
                     </div>
 
@@ -288,6 +293,45 @@ let tel = parametros && parametros[0].telefone
                          
                      />
                  </div>
+
+                 <div className="flex-container" >
+                     <label>Facebook:</label>
+                     <input
+                         placeholder={"Facebook*"}
+                         type='facebook'
+                         name="facebook"
+                         value={formEditInfo.facebook}
+                         onChange={onChangeEditInfo}
+                         className="input-Subsection3"
+                         
+                     />
+                 </div>
+
+                 <div className="flex-container" >
+                     <label>Instagram:</label>
+                     <input
+                         placeholder={"Instagram*"}
+                         type='instagram'
+                         name="instagram"
+                         value={formEditInfo.instagram}
+                         onChange={onChangeEditInfo}
+                         className="input-Subsection3"
+                         
+                     />
+                 </div>
+
+                 <div className="flex-container" >
+                     <label>Youtube:</label>
+                     <input
+                         placeholder={"Youtube*"}
+                         type='youtube'
+                         name="youtube"
+                         value={formEditInfo.youtube}
+                         onChange={onChangeEditInfo}
+                         className="input-Subsection3"
+                         
+                     />
+                 </div>
                  
                  <div className="btn-container" >
                      <button type="submit">Salvar</button>
@@ -304,6 +348,9 @@ let tel = parametros && parametros[0].telefone
              <label>Celular: {parametros && parametros[0].celular}</label>
              <label>Email: {parametros && parametros[0].email}</label>
              <label>Endereço: {parametros && parametros[0].endereco}</label>
+             <label>Facebook: {parametros && parametros[0].facebook}</label>
+             <label>Instagram: {parametros && parametros[0].instagram}</label>
+             <label>Youtube: {parametros && parametros[0].youtube}</label>
              </div>
 
          </div>
