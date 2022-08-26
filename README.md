@@ -1,5 +1,5 @@
 
-<h1 align="center" id="top">Projeto Pcgarage: <img src="https://i.im.ge/2022/08/19/OszSXY.pclogo.png" width="50"></h1>
+<h1 align="center" id="top">Projeto Pcgarage: <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvk4BlWIeaN5k0aL-4XNShU07q_YUJj6allV8_Xa31HIytUd7Vis_gzTitsniVIoqqWUs&usqp=CAU"></h1>
 
 <p align="center">
   <a href="#sobre">Sobre</a> &#xa0; | &#xa0; 
