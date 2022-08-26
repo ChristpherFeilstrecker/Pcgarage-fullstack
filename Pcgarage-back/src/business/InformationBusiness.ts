@@ -45,56 +45,18 @@ export class InformationBusiness {
             throw new Error("Business - Necessário informar um ID válido");
          }
 
-         if(telefone){
-            const highlights = await this.informationDatabase.editInformationTelefone(
-               id,
-               telefone
-            );
-         }
          
-         if(celular){
-            const highlights = await this.informationDatabase.editInformationCelular(
+            const highlights = await this.informationDatabase.editInformation(
                id,
-               celular
-            );
-         }
-
-         if(email){
-            const highlights = await this.informationDatabase.editInformationEmail(
-               id,
-               email
-            );
-         }
-
-         if(endereco){
-            const highlights = await this.informationDatabase.editInformationEndereco(
-               id,
-               endereco
-            );
-         }
-
-         if(facebook){
-            const highlights = await this.informationDatabase.editInformationFacebook(
-               id,
-               facebook
-            );
-         }
-
-         if(instagram){
-            const highlights = await this.informationDatabase.editInformationInstagram(
-               id,
-               instagram
-            );
-         }
-
-         if(youtube){
-            const highlights = await this.informationDatabase.editInformationYoutube(
-               id,
+               telefone,
+               celular,
+               email,
+               endereco,
+               facebook,
+               instagram,
                youtube
             );
-         }
-
-
+      
          return ("Business - Informações editadas com sucesso");
       } catch (error) {
 

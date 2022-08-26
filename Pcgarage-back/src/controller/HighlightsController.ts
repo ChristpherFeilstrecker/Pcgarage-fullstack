@@ -19,10 +19,11 @@ export class HighlightsController {
 
    public async editHighlights(req: Request, res: Response) {
       try {
-         const { id, nome, descricao, preco, imagem } = req.body
+         const { id, id_galeria, nome, descricao, preco, imagem } = req.body
 
          const result = await HighlightsBusiness.editHighlights(
             id,
+            id_galeria,
             nome,
             descricao,
             preco,

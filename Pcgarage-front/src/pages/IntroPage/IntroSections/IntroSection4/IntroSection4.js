@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BASE_URL } from "../../../../components/constants/BaseURL";
 import GlobalContext from "../../../../components/global/globalContext";
 import useForm from "../../../../components/hooks/useForm";
@@ -12,7 +12,7 @@ export default function IntroSection4() {
 
     const useRequestData = (url) => {
         const [data, setData] = useState();
-        let urlLink = url
+        let urlLink = url+"?req="+ new Date().getTime()
        
             axios
                 .get(urlLink)
@@ -27,7 +27,16 @@ export default function IntroSection4() {
     
     }
 
-    const parametros = useRequestData(BASE_URL + "/informacoes")
+    let para = useRequestData(BASE_URL + "/informacoes")
+    let [parametros, setParametros] = useState("")
+
+    useEffect(() => {
+
+        if (para) {
+            setParametros(para)
+        }
+
+    }, []);
 
     const onChangeInputs = (ev) => {
         ev.preventDefault()

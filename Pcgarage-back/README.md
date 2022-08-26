@@ -1,9 +1,7 @@
-<h1 align="center" id="top">Projeto Dog Hero (API): <img src="https://www.pngkey.com/png/full/67-675394_dog-walking-png-dog-walking.png" width="50"></h1>
+<h1 align="center" id="top">Projeto Pcgarage(API): <img src="https://i.im.ge/2022/08/19/OszSXY.pclogo.png" width="50"></h1>
 
 <p align="center">
   <a href="#sobre">Sobre</a> &#xa0; | &#xa0; 
-  <a href="#documentacao">Documentação</a> &#xa0; | &#xa0;
-  <a href="#heroku">Deploy</a> &#xa0; | &#xa0;
   <a href="#desenvolvedor">Desenvolvedor</a> | &#xa0;
 <a href="#tecnologias">Tecnologias</a> &#xa0; | &#xa0;
 <a href="#funcionalidades">Funcionalidades</a> &#xa0; | &#xa0;
@@ -15,15 +13,7 @@
 - Case de back-End
 
 
- Projeto Dog Hero é uma API para agendamento de passeios para cachorros. 
-
-<h2 id="documentacao"> Documentação API: </h2>
-
- ## Acesse o postman aqui 👉 [ <img src="https://i.pinimg.com/originals/c1/ea/7e/c1ea7efd4baf038c15ed7c02d280d603.gif" width="70" align="center"> ](https://documenter.getpostman.com/view/18385085/UVsTr2vB)
-
-
-<h2 id="heroku"> Deploy (Heroku): </h2>
-[https://doghero-carver-case1.herokuapp.com/] 
+ Projeto PCgarage API para o site lojapcgarage.com.br. 
 
 
 <h2 id="desenvolvedor"> Desenvolvedor 🤖 </h2>
@@ -57,59 +47,18 @@
 
 <h2 id="funcionalidades"> Funcionalidades:
 
-* Cadastrar passeio;
-* Iniciar passeio;
-* Finalizar passeio;
-* Mostrar tempo real do passeio;
-* Retornar todos passeios com ou sem paginação;
+* Admin (Criar e excluir);
+* Produtos(Criar, editar produtos e excluir);
+* Destaques(Editar produtos e excluir);
+* Galerias(Criar, editar produtos e excluir);
+* Informações(Editar produtos e excluir);
 
-<h2 id="testes"> Testes:
-
-### Testes de creat (Cadastrar passeio)
- 
-    √ Erro que deve retornar quando um ou mais valores estã o vazios 
-    √ Erro que deve retornar quando ano é anterior ao atual 
-    √ Erro que deve retornar quando mês é anterior ao atual 
-    √ Erro que deve retornar quando mês é anterior ao atual 
-    √ Erro que deve retornar quando horário é diferente da duração 
-    √ Certo quando todos parametros estão corretos 
-
-###  Teste de show (Mostrar tempo real do passeio)
-    √ Erro que deve retornar quando id está vazio 
-    √ Erro que deve retornar quando id for invalido 
-    √ Erro quando status PENDENTE 
-    √ Erro quando status PASSEANDO 
-    √ Certo quando todos parametros estão corretos 
-
-###  Teste de startWalk (Iniciar passeio)
-    √ Erro que deve retornar quando um ou mais valores estão vazios 
-    √ Erro que deve retornar quando passeio ja tiver sido finalizado 
-    √ Erro que deve retornar quando passeio ja tiver sido iniciado 
-    √ Erro que deve retornar quando id for invalido 
-    √ Certo quando todos parametros estão corretos 
-
-###  Teste de finishWalk (Finalizar passeio)
-    √ Erro que deve retornar quando um ou mais valores estão vazios 
-    √ Erro que deve retornar quando passeio ja tiver sido finalizado 
-    √ Erro que deve retornar quando passeio ainda não tiver sido iniciado 
-    √ Erro que deve retornar quando id for invalido 
-    √ Erro que deve retornar quando hora final for menor que inicial 
-    √ Erro que deve retornar quando hora for igual, mas minuto final for menor ou igual que inicial 
-    √ Certo quando todos parametros estão corretos 
-
-###  Teste de walks (Retornar todos passeios)
-    √ Erro que deve retornar quando for enviado paginação e número da página for zero 
-    √ Erro que deve retornar quando for enviado quantidade de itens por pagina e número da página for vaziu 
-    √ Erro que deve retornar quando for enviado numero de pagina e itens por página for vaziu 
-    √ Certo quando todos parametros são enviados para paginação
-    √ Certo quando nenhum parametro e enviado trazendo todos passeios
 
 <h2 id="comousar"> Como usar </h2>
 
-Teste o código pelo postman seguindo a documentação <a href="#documentacao">AQUI</a> ou pelo seu computador assim:
 - Clone o código para seu computador.
 - Rode o comando npm instal (para instalar bibliotecas).
-- Cria um arquivo com nome .env (para acessar seu banco de dados).
+- Crie um arquivo com nome .env (para acessar seu banco de dados).
   
    Ex.: 
    
@@ -123,9 +72,7 @@ Teste o código pelo postman seguindo a documentação <a href="#documentacao">A
   
         DB_DATABASE_NAME = nome_database
   
-- Rode o comando "npm run migrations" para criar a tabela.
-- Rode o comando "npm run test" para rodar os testes dos endpoints.
-- Rode o comando "npm run dev" ou "npm run start" para testar os endpoints
-- Utilise o arquivo request.rest para testar as funcionalidades.
+- Crie as tabelas no mysql e adicione a senha no arquivo que você criou .env
+- Rode o comando "npm run dev" ou "npm run start" para testar
 
 <a href="#top">Voltar para o topo</a> 

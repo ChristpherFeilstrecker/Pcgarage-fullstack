@@ -5,7 +5,6 @@ export class HighlightsDatabase extends BaseDataBase {
 
    protected tableName: string = "pcgarage_destaque";
 
-   
    public async getHighlights(): Promise<void | any> {
       try {
          const result = await BaseDataBase.connection.raw(`
@@ -38,82 +37,33 @@ export class HighlightsDatabase extends BaseDataBase {
     }
  }
 
-   public async editHighlightNome(
-    id: String,
-    nome: String
-      
-   ): Promise<void | any> {
-    try {
-   let query = `UPDATE \`pcgarage_destaque\` SET \`nome\`="${nome}" WHERE \`id\`="${id}";`
+ public async editHighlight(
+   id: String,
+   id_galeria: String,
+   nome: String,
+   descricao: String,
+   preco: String,
+   imagem: String
+   
+  ): Promise<void | any> {
+   try {
+  let query = `UPDATE \`pcgarage_destaque\` SET \`id_galeria\`="${id_galeria}", \`nome\`="${nome}", \`descricao\`="${descricao}", \`preco\`="${preco}", \`imagem\`="${imagem}" WHERE \`id\`="${id}";`
 
-       const result = await BaseDataBase.connection.raw(
-         query
-       );
+      const result = await BaseDataBase.connection.raw(
+        query
+      );
 
+   } catch (error) {
 
-    } catch (error) {
+      if (error instanceof Error) {
+         throw new Error(error.message)
+      }
+   }
+}
 
-       if (error instanceof Error) {
-          throw new Error(error.message)
-       }
-    }
- }
+ 
 
- public async editHighlightDescricao(
-    id: String,
-    descricao: String
-      
-   ): Promise<void | any> {
-    try {
-      let query = `UPDATE \`pcgarage_destaque\` SET \`descricao\`="${descricao}" WHERE \`id\`="${id}";`
-  
-         const result = await BaseDataBase.connection.raw(
-           query
-         );
+ 
 
-    } catch (error) {
-       if (error instanceof Error) {
-          throw new Error(error.message)
-       }
-    }
- }
-
- public async editHighlightPreco(
-    id: String,
-    preco: String
-      
-   ): Promise<void | any> {
-    try {
-      let query = `UPDATE \`pcgarage_destaque\` SET \`preco\`="${preco}" WHERE \`id\`="${id}";`
-  
-         const result = await BaseDataBase.connection.raw(
-           query
-         );
-
-    } catch (error) {
-       if (error instanceof Error) {
-          throw new Error(error.message)
-       }
-    }
- }
-
- public async editHighlightImagem(
-    id: String,
-    imagem: String
-      
-   ): Promise<void | any> {
-    try {
-      let query = `UPDATE \`pcgarage_destaque\` SET \`imagem\`="${imagem}" WHERE \`id\`="${id}";`
-  
-         const result = await BaseDataBase.connection.raw(
-           query
-         );
-
-    } catch (error) {
-       if (error instanceof Error) {
-          throw new Error(error.message)
-       }
-    }
- }
 
 }

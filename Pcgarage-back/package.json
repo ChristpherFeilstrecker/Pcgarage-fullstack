@@ -4,9 +4,9 @@
   "description": "api-test-pcgarage",
   "main": "indexApp.js",
   "scripts": {
-    "start": "tsc & node build/indexApp.js",
+    "start": "tsc & node build/index.js",
     "build": "tsc",
-    "dev": "tsnd src/indexApp.ts"
+    "dev": "tsnd src/index.ts"
   },
   "keywords": [
     "api",

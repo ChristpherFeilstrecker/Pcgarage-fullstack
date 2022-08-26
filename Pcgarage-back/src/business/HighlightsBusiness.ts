@@ -30,6 +30,7 @@ export class HighlightsBusiness {
 
    public async editHighlights(
       id: String,
+      id_galeria: String,
       nome: String,
       descricao: String,
       preco: String,
@@ -38,41 +39,26 @@ export class HighlightsBusiness {
       try {
 
          if (!id ) {
-            throw new Error("Business - Necessário informar um ID válido");
+            throw new Error("Business - Necessário informar ID");
          }
 
-         if (!nome && !descricao  && !preco && !imagem ) {
-            throw new Error("Business - Necessário informar no mínimo um atributo para editar");
+         if (!id_galeria) {
+            throw new Error("Business - Necessário informar id da galeria");
+         }
+
+         if (!nome || !descricao  || !preco || !imagem ) {
+            throw new Error("Business - Necessário informar atributos para editar");
          }
          
-         if(nome){
-            const highlights = await this.highlightsDatabase.editHighlightNome(
+            const highlights = await this.highlightsDatabase.editHighlight(
                id,
-               nome
-            );
-         }
-
-         if(descricao){
-            const highlights = await this.highlightsDatabase.editHighlightDescricao(
-               id,
-               descricao
-            );
-         }
-
-         if(preco){
-            const highlights = await this.highlightsDatabase.editHighlightPreco(
-               id,
-               preco
-            );
-         }
-
-         if(imagem){
-            const highlights = await this.highlightsDatabase.editHighlightImagem(
-               id,
+               id_galeria,
+               nome,
+               descricao,
+               preco,
                imagem
             );
-         }
-
+         
          return ("Business - Destaque editado com sucesso");
       } catch (error) {
 

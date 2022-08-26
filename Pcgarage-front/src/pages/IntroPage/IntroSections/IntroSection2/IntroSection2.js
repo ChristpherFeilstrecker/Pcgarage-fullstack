@@ -1,6 +1,6 @@
 import { SubTitleTagB } from "../../../../StyledGlobal";
 import "./StyledIntroSection2.css";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import GlobalContext from "../../../../components/global/globalContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -15,8 +15,9 @@ export default function IntroSection2() {
 
   const useRequestData = (url) => {
     const [data, setData] = useState();
-    let urlLink = url
+    let urlLink = url+"?req="+ new Date().getTime()
    
+    useEffect((url) => {
         axios
             .get(urlLink)
             .then((response) => {
@@ -25,21 +26,23 @@ export default function IntroSection2() {
             .catch((error) => {
                 console.log("erro", error)
             });
+    }, [url]);
 
     return data;
 
 }
-const galerias = useRequestData(BASE_URL + "/galerias")
 
-  const setSearchFunction=(galeri)=>{
-    console.log("id",galeri)
+  let galerias = useRequestData(BASE_URL + "/galerias")
+
+
+  const setSearchFunction = (galeri) => {
 
     setSearch(`${galeri.id}`)
 
     setTitle(`${galeri.nome}`)
     navigate("/produtos")
     window.scrollTo(0, 0)
-}
+  }
 
   const listGalerias = galerias && galerias
     .map((galeri) => {
@@ -48,7 +51,7 @@ const galerias = useRequestData(BASE_URL + "/galerias")
         <div className="box-image" >
           <img data-aos="fade-down" className="img-box " src={galeri.imagem} alt={galeri.nome} />
         </div>
-        <div className="nav-box"  onClick={() => setSearchFunction(galeri)}>
+        <div className="nav-box" onClick={() => setSearchFunction(galeri)}>
           <div className="nav-word">{galeri.nome}</div>
         </div>
       </div>

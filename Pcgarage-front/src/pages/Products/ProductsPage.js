@@ -1,7 +1,7 @@
 //import { useNavigate } from "react-router-dom";
 import "./StyledProductsPage.css";
 import CardProducts from "./CardProducts";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import GlobalContext from "../../components/global/globalContext";
 import axios from "axios";
 import { BASE_URL } from "../../components/constants/BaseURL";
@@ -18,6 +18,7 @@ export default function ProductsPage(props) {
         const [data, setData] = useState();
         let urlLink = url
        
+        useEffect((url) => {
             axios
                 .get(urlLink)
                 .then((response) => {
@@ -26,12 +27,16 @@ export default function ProductsPage(props) {
                 .catch((error) => {
                     console.log("erro", error)
                 });
+        }, [url]);
     
         return data;
     
     }
-    const galerias = useRequestData(BASE_URL + "/galerias")
-    const produtos = useRequestData(BASE_URL + "/produtos")
+    
+    let galerias = useRequestData(BASE_URL + "/galerias")
+  
+    let produtos = useRequestData(BASE_URL + "/produtos")
+
 
     const showModal = () => {
         let element = document.getElementById("modal");

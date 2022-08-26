@@ -12,8 +12,8 @@ export default function IntroSection3() {
 
     const useRequestData = (url) => {
         const [data, setData] = useState();
-        let urlLink = url
-
+        let urlLink = url+"?req="+ new Date().getTime()
+       
         useEffect((url) => {
             axios
                 .get(urlLink)
@@ -23,13 +23,14 @@ export default function IntroSection3() {
                 .catch((error) => {
                     console.log("erro", error)
                 });
-        }, [url, urlLink]);
-
+        }, [url]);
+    
         return data;
-
+    
     }
-
+    
     let videos = useRequestData(BASE_URL + "/videos")
+
     let goToVideos=()=>{
         navigate("/videos");
         window.scrollTo(0, 0)
@@ -47,7 +48,8 @@ export default function IntroSection3() {
                 <div className="box-container-section3">
                     <div className="text-container-section3">
                         <h3 className="title-text-section3" data-aos="fade-up">VIDEOS</h3>
-                        <h4 className="title-text-section3" data-aos="fade-up">Descrição texto para seção dos videos etc...</h4>
+                        <h4 className="title-text-section3" data-aos="fade-up">Confira as nossas </h4>
+                        <h4 className="title-text-section3" data-aos="fade-up">dicas clássicas</h4>
                         <div onClick={()=>goToVideos()} className="btn-rigth-container-more margin-top" data-aos="fade-up">VER VIDEOS</div>
                     </div>
                 </div>

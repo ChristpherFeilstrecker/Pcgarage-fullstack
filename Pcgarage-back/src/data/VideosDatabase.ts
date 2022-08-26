@@ -63,13 +63,15 @@ export class VideosDatabase extends BaseDataBase {
       }
    }
 
-   public async editVideoNome(
+   public async editVideo(
       id: String,
-      nome: String
+      nome: String,
+      descricao: String,
+      url: String
         
      ): Promise<void | any> {
       try {
-         let query = `UPDATE \`${this.tableName}\` SET \`nome\`="${nome}" WHERE \`id\`="${id}";`
+         let query = `UPDATE \`${this.tableName}\` SET \`nome\`="${nome}", \`descricao\`="${descricao}", \`url\`="${url}" WHERE \`id\`="${id}";`
   
          const result = await BaseDataBase.connection.raw(
            query
@@ -82,43 +84,6 @@ export class VideosDatabase extends BaseDataBase {
       }
    }
   
-   public async editVideoDescricao(
-      id: String,
-      descricao: String
-        
-     ): Promise<void | any> {
-      try {
-         let query = `UPDATE \`${this.tableName}\` SET \`descricao\`="${descricao}" WHERE \`id\`="${id}";`
-  
-         const result = await BaseDataBase.connection.raw(
-           query
-         );
-  
-      } catch (error) {
-         if (error instanceof Error) {
-            throw new Error(error.message)
-         }
-      }
-   }
-  
-   public async editVideoUrl(
-      id: String,
-      imagem: String
-        
-     ): Promise<void | any> {
-      try {
-         let query = `UPDATE \`${this.tableName}\` SET \`url\`="${imagem}" WHERE \`id\`="${id}";`
-  
-         const result = await BaseDataBase.connection.raw(
-           query
-         );
-  
-      } catch (error) {
-         if (error instanceof Error) {
-            throw new Error(error.message)
-         }
-      }
-   }
 /*
    public async editGallerieNome(
       id: String,

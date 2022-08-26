@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BASE_URL } from "../../components/constants/BaseURL";
 //import { useNavigate } from "react-router-dom";
 import GlobalContext from "../../components/global/globalContext";
@@ -12,8 +12,9 @@ export default function AssistancePage() {
 
     const useRequestData = (url) => {
         const [data, setData] = useState();
-        let urlLink = url
+        let urlLink = url+"?req="+ new Date().getTime()
        
+        useEffect((url) => {
             axios
                 .get(urlLink)
                 .then((response) => {
@@ -22,6 +23,7 @@ export default function AssistancePage() {
                 .catch((error) => {
                     console.log("erro", error)
                 });
+        }, [url]);
     
         return data;
     

@@ -11,7 +11,7 @@ export default function Footer() {
    
     const useRequestData = (url) => {
         const [data, setData] = useState();
-        let urlLink = url
+        let urlLink = url+"?req="+ new Date().getTime()
        
         useEffect((url) => {
             axios
@@ -22,14 +22,14 @@ export default function Footer() {
                 .catch((error) => {
                     console.log("erro", error)
                 });
-        }, [url, urlLink]);
+        }, [url]);
     
         return data;
     
     }
 
-    const parametros = useRequestData(BASE_URL + "/informacoes")
-
+    let parametros = useRequestData(BASE_URL + "/informacoes")
+ 
     return (
         <div id="footer">
             <div className="footer-container">

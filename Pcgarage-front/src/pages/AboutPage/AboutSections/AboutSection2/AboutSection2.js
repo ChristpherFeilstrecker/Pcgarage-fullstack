@@ -43,7 +43,7 @@ export default function AboutSection2() {
                         </li>
                     </ul>
                     <div data-aos="fade" className="button-container-rigth-about-section-2">
-                        <div onClick={() => navigate(`/aggostini/contato`)} className="button-rigth-about-section-2">CONTATO</div>
+                        <div onClick={() => navigate(`/contato`)} className="button-rigth-about-section-2">CONTATO</div>
                     </div>
                 </div>
             </div>

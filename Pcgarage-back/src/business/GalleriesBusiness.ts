@@ -42,30 +42,18 @@ export class GalleriesBusiness {
             throw new Error("Business - Necessário informar um ID válido");
          }
 
-         if (!nome && !descricao && !imagem ) {
-            throw new Error("Business - Necessário informar no mínimo um atributo para editar");
+         if (!nome || !descricao || !imagem ) {
+            throw new Error("Business - Necessário informar todos atributos para edição");
          }
          
-         if(nome){
-            const Gallerie = await this.galleriesDatabase.editGallerieNome(
+        
+            const Gallerie = await this.galleriesDatabase.editGallerie(
                id,
-               nome
-            );
-         }
-
-         if(descricao){
-            const Gallerie = await this.galleriesDatabase.editGallerieDescricao(
-               id,
-               descricao
-            );
-         }
-
-         if(imagem){
-            const Gallerie = await this.galleriesDatabase.editGallerieImagem(
-               id,
+               nome,
+               descricao,
                imagem
             );
-         }
+         
 
          return ("Business - Galeria editada com sucesso");
       } catch (error) {

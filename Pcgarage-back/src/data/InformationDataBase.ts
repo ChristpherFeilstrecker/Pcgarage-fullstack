@@ -20,127 +20,19 @@ export class InformationDatabase extends BaseDataBase {
       }
    }
 
-   public async editInformationTelefone(
-      id:String,
-      telefone: String
-        
-     ): Promise<void | any> {
-      try {
-         let query = `UPDATE \`${this.tableName}\` SET \`telefone\`="${telefone}" WHERE \`id\`="${id}";`
-  
-         const result = await BaseDataBase.connection.raw(
-           query
-         );
-  
-      } catch (error) {
-         if (error instanceof Error) {
-            throw new Error(error.message)
-         }
-      }
-   }
-  
-   public async editInformationCelular(
+   public async editInformation(
       id: String,
-      celular: String
-        
-     ): Promise<void | any> {
-      try {
-         let query = `UPDATE \`${this.tableName}\` SET \`celular\`="${celular}" WHERE \`id\`="${id}";`
-  
-         const result = await BaseDataBase.connection.raw(
-           query
-         );
-  
-      } catch (error) {
-         if (error instanceof Error) {
-            throw new Error(error.message)
-         }
-      }
-   }
-  
-   public async editInformationEmail(
-      id: String,
-      email: String
-        
-     ): Promise<void | any> {
-      try {
-         let query = `UPDATE \`${this.tableName}\` SET \`email\`="${email}" WHERE \`id\`="${id}";`
-  
-         const result = await BaseDataBase.connection.raw(
-           query
-         );
-  
-      } catch (error) {
-         if (error instanceof Error) {
-            throw new Error(error.message)
-         }
-      }
-   }
-  
-   public async editInformationEndereco(
-      id: String,
-      endereco: String
-        
-     ): Promise<void | any> {
-      try {
-         let query = `UPDATE \`${this.tableName}\` SET \`endereco\`="${endereco}" WHERE \`id\`="${id}";`
-  
-         const result = await BaseDataBase.connection.raw(
-           query
-         );
-  
-      } catch (error) {
-         if (error instanceof Error) {
-            throw new Error(error.message)
-         }
-      }
-   }
-
-   public async editInformationFacebook(
-      id: String,
-      facebook: String
-        
-     ): Promise<void | any> {
-      try {
-         let query = `UPDATE \`${this.tableName}\` SET \`facebook\`="${facebook}" WHERE \`id\`="${id}";`
-  
-         const result = await BaseDataBase.connection.raw(
-           query
-         );
-  
-      } catch (error) {
-         if (error instanceof Error) {
-            throw new Error(error.message)
-         }
-      }
-   }
-
-   public async editInformationInstagram(
-      id: String,
-      instagram: String
-        
-     ): Promise<void | any> {
-      try {
-         let query = `UPDATE \`${this.tableName}\` SET \`instagram\`="${instagram}" WHERE \`id\`="${id}";`
-  
-         const result = await BaseDataBase.connection.raw(
-           query
-         );
-  
-      } catch (error) {
-         if (error instanceof Error) {
-            throw new Error(error.message)
-         }
-      }
-   }
-
-   public async editInformationYoutube(
-      id: String,
+      telefone: String,
+      celular: String,
+      email: String,
+      endereco: String,
+      facebook: String,
+      instagram: String,
       youtube: String
         
      ): Promise<void | any> {
       try {
-         let query = `UPDATE \`${this.tableName}\` SET \`youtube\`="${youtube}" WHERE \`id\`="${id}";`
+         let query = `UPDATE \`${this.tableName}\` SET \`telefone\`="${telefone}", \`celular\`="${celular}", \`email\`="${email}", \`endereco\`="${endereco}", \`facebook\`="${facebook}", \`instagram\`="${instagram}", \`youtube\`="${youtube}" WHERE \`id\`="${id}";`
   
          const result = await BaseDataBase.connection.raw(
            query
@@ -152,5 +44,6 @@ export class InformationDatabase extends BaseDataBase {
          }
       }
    }
+  
 
 }

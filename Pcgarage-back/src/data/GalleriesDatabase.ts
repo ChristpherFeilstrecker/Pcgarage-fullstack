@@ -20,51 +20,15 @@ export class GalleriesDatabase extends BaseDataBase {
       }
    }
 
-   public async editGallerieNome(
+   public async editGallerie(
       id: String,
-      nome: String
-        
-     ): Promise<void | any> {
-      try {
-         let query = `UPDATE \`${this.tableName}\` SET \`nome\`="${nome}" WHERE \`id\`="${id}";`
-  
-         const result = await BaseDataBase.connection.raw(
-           query
-         );
-  
-      } catch (error) {
-         if (error instanceof Error) {
-            throw new Error(error.message)
-         }
-      }
-   }
-  
-   public async editGallerieDescricao(
-      id: String,
-      descricao: String
-        
-     ): Promise<void | any> {
-      try {
-         let query = `UPDATE \`${this.tableName}\` SET \`descricao\`="${descricao}" WHERE \`id\`="${id}";`
-  
-         const result = await BaseDataBase.connection.raw(
-           query
-         );
-  
-      } catch (error) {
-         if (error instanceof Error) {
-            throw new Error(error.message)
-         }
-      }
-   }
-  
-   public async editGallerieImagem(
-      id: String,
+      nome: String,
+      descricao: String,
       imagem: String
         
      ): Promise<void | any> {
       try {
-         let query = `UPDATE \`${this.tableName}\` SET \`imagem\`="${imagem}" WHERE \`id\`="${id}";`
+         let query = `UPDATE \`${this.tableName}\` SET \`nome\`="${nome}", \`descricao\`="${descricao}", \`imagem\`="${imagem}" WHERE \`id\`="${id}";`
   
          const result = await BaseDataBase.connection.raw(
            query
@@ -76,6 +40,9 @@ export class GalleriesDatabase extends BaseDataBase {
          }
       }
    }
+  
+ 
+  
 
    public async addGallerie(
       id: String,

@@ -17,8 +17,8 @@ export default function ProdToEditCard(props) {
 
     const useRequestData = (url) => {
         const [data, setData] = useState();
-        let urlLink = url
-       
+        let urlLink = url+"?req="+ new Date().getTime()
+      
         useEffect((url) => {
             axios
                 .get(urlLink)
@@ -28,13 +28,13 @@ export default function ProdToEditCard(props) {
                 .catch((error) => {
                     console.log("erro", error)
                 });
-        }, [url, urlLink]);
+        }, [url]);
     
         return data;
     
     }
 
-    const galerias = useRequestData(BASE_URL + "/galerias")
+    let galerias = useRequestData(BASE_URL + "/galerias")
 
     const goToApp = () => {
         navigate("/admin/painel_de_controle")
@@ -55,18 +55,27 @@ export default function ProdToEditCard(props) {
             */
 
     // destaque para editar
-    const [formEditDestaque, onChangeEditDestaque] = useForm({ nome: prodSel.nome, descricao: prodSel.descricao, preco: prodSel.preco })
+    const [formEditDestaque, onChangeEditDestaque] = useForm({id_galeria: prodSel.id_galeria, nome: prodSel.nome, descricao: prodSel.descricao, preco: prodSel.preco })
 
     const [imageEditDestaque, setImageEditDestaque] = useState("")
+    const [idGaleriaDestaques, setIdGaleriaDestaque] = useState("")
+
+
+
+
+    let updateIdGaleryDestaque = (ev) => {
+        setIdGaleriaDestaque(ev.target.value)
+    }
 
     const EditDestaquesBD = (body) => {
         
-        EditRequestData(BASE_URL + "/editardestaque", body)
+        EditRequestData("https://lojapcgarage.com.br/app" + "/editardestaque", body)
 
         document.getElementById("inputFile").value = "";
         setMessage("Destaque editado com sucesso");
         setTimeout(() => {
             setMessage("")
+            navigate("/admin/painel_de_controle")
             document.location.reload(true);
         }, 1000)
 
@@ -77,12 +86,17 @@ export default function ProdToEditCard(props) {
         e.preventDefault()
         let body = {
             id:prodSel && prodSel.id,
+            id_galeria:prodSel && prodSel.id_galeria,
             nome: formEditDestaque.nome,
             descricao: formEditDestaque.descricao,
             preco: formEditDestaque.preco,
             imagem: prodSel && prodSel.imagem
         }
 
+        if(idGaleriaDestaques){
+            body.id_galeria = idGaleriaDestaques
+        }
+console.log("body",body)
         if (imageEditDestaque !== "") {
             const formData = new FormData();
             formData.append('image', imageEditDestaque);
@@ -433,6 +447,16 @@ export default function ProdToEditCard(props) {
         if (toEdit === "DESTAQUES") {
             return <div className="product-to-edit">
                 <form onSubmit={editDestaque} className="form-Subsection3">
+
+                <div className="flex-container" >
+                        <label>Galeria:</label>
+
+                        <select name="idgaleria" value={idGaleriaDestaques} onChange={updateIdGaleryDestaque} >
+                            <option value="">Selecionar galeria</option>
+                            {idGaleryList}
+                        </select>
+                    </div>
+
                     <div className="flex-container" >
                         <label>Nome do Destaque:</label>
                         <input

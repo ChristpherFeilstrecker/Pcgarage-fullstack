@@ -2,16 +2,20 @@ import { useEffect, useState } from "react";
 import GlobalContext from "./globalContext";
 import useRequestData from "../hooks/useRequestData";
 import { BASE_URL } from "../constants/BaseURL";
+import axios from "axios";
+import { Build } from "@material-ui/icons";
 
 export default function GlobalState(props) {
-    let [cart, setCart] = useState([""])
-    const [prodToDetail, setProdToDetail] = useState([""])
-    let [refresh, setRefresh] = useState(false)
-    let [toAdd, setToAdd] = useState("")
-    let [toEdit, setToEdit] = useState("")
+    let [cart, setCart] = useState([""]);
+    const [prodToDetail, setProdToDetail] = useState([""]);
+    let [refresh, setRefresh] = useState(false);
+    let [toAdd, setToAdd] = useState("");
+    let [toEdit, setToEdit] = useState("");
     let [search, setSearch] = useState("TODOS PRODUTOS");
     let [title, setTitle] = useState("TODOS PRODUTOS");
-    let [pedido, setPedido] = useState("")
+    let [pedido, setPedido] = useState("");
+    let [newdestaques, setNewDestaques] = useState("");
+    const [url, setPokeUrl] = useState(`${BASE_URL}`)
 
 
 /*
@@ -102,7 +106,9 @@ export default function GlobalState(props) {
         title,
         setTitle,
         pedido,
-        setPedido
+        setPedido,
+        newdestaques,
+        setNewDestaques
     }
 
     return (<GlobalContext.Provider value={data}>

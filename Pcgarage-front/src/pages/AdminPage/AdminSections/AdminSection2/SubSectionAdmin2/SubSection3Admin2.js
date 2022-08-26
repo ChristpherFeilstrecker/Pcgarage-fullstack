@@ -23,7 +23,7 @@ export default function SubSection3Admin2() {
 
     const useRequestData = (url) => {
         const [data, setData] = useState();
-        let urlLink = url
+        let urlLink = url+"?req="+ new Date().getTime()
        
         useEffect((url) => {
             axios
@@ -34,12 +34,13 @@ export default function SubSection3Admin2() {
                 .catch((error) => {
                     console.log("erro", error)
                 });
-        }, [url, urlLink]);
+        }, [url]);
     
         return data;
     
     }
-    const galerias = useRequestData(BASE_URL + "/galerias")
+
+    let galerias = useRequestData(BASE_URL + "/galerias")
 
     const goToAdd = (add) => {
         setToAdd(add)

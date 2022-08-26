@@ -27,7 +27,8 @@ export const Router = () => {
   const useRequestData = (url) => {
     const [data, setData] = useState();
     let urlLink = url
-   
+
+    useEffect((url) => {
         axios
             .get(urlLink)
             .then((response) => {
@@ -36,12 +37,16 @@ export const Router = () => {
             .catch((error) => {
                 console.log("erro", error)
             });
+    }, [url, urlLink]);
 
     return data;
 
 }
-const parametros = useRequestData(BASE_URL + "/informacoes")
-  
+
+let parametros = useRequestData(BASE_URL + "/informacoes")
+
+let celular = parametros && parametros[0].celular
+let newCel = "55"+ celular
 
 useEffect(()=>{
   setSplash(true)
@@ -57,7 +62,7 @@ useEffect(()=>{
     :
     <BrowserRouter className="page">
       <div className='whats-icon-container'>
-      <a href={`https://api.whatsapp.com/send?phone=${parseFloat(parametros && parametros[0].celular)}&text=Olá! Gostária de solicitar um orçamento.`}
+      <a href={`https://api.whatsapp.com/send?phone=${parseFloat(newCel)}&text=Olá! Gostária de solicitar um orçamento.`}
     target="_blank" rel="noreferrer">
       <img className="whats-fixed-icon" src={iconWhats} alt="icon-whats"/>
     </a>       

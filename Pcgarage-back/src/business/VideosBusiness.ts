@@ -101,26 +101,14 @@ export class VideosBusiness {
             throw new Error("Business - Necessário informar no mínimo um atributo para editar");
          }
          
-         if(nome){
-            const Gallerie = await this.videosDatabase.editVideoNome(
+         
+            const Gallerie = await this.videosDatabase.editVideo(
                id,
-               nome
-            );
-         }
-
-         if(descricao){
-            const Gallerie = await this.videosDatabase.editVideoDescricao(
-               id,
-               descricao
-            );
-         }
-
-         if(url){
-            const Gallerie = await this.videosDatabase.editVideoUrl(
-               id,
+               nome,
+               descricao,
                url
             );
-         }
+         
 
          return ("Business - Galeria editada com sucesso");
       } catch (error) {

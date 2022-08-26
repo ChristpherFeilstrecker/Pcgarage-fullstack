@@ -44,7 +44,7 @@ export default function DetailProductPage(props) {
 
     const useRequestData = (url) => {
         const [data, setData] = useState();
-        let urlLink = url
+        let urlLink = url+"?req="+ new Date().getTime()
 
         useEffect((url) => {
             axios
@@ -61,10 +61,10 @@ export default function DetailProductPage(props) {
 
     }
 
-    const parametros = useRequestData(BASE_URL + "/informacoes")
+    let parametros = useRequestData(BASE_URL + "/informacoes")
 
+    let produtos = useRequestData(BASE_URL + "/produtos")
 
-    const produtos = useRequestData(BASE_URL + "/produtos")// recebe a lista do produto do BD
     const params = window.location.search.substring(1).split(':'); // pega o id por params do produto selecionado
     const index = produtos && produtos.findIndex((i) => params && params[0] === i.id) // recebe a lista de produtos e retorna qual index do id recebido por params
     const prodToDetail = produtos && produtos[index]

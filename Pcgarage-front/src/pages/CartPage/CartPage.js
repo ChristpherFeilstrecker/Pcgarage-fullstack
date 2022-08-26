@@ -20,7 +20,7 @@ export default function CartPage(props) {
 
     const useRequestData = (url) => {
         const [data, setData] = useState();
-        let urlLink = url
+        let urlLink = url+"?req="+ new Date().getTime()
 
         useEffect((url) => {
             axios
@@ -37,7 +37,8 @@ export default function CartPage(props) {
 
     }
 
-    const parametros = useRequestData(BASE_URL + "/informacoes")
+    let parametros = useRequestData(BASE_URL + "/informacoes")
+
 
     let navigate = useNavigate();
 
@@ -52,7 +53,6 @@ export default function CartPage(props) {
         return Products
     })
 
-    console.log("pedido", pedido)
     // let [produtos, setProdutos] = useState("")
     /*
         useEffect(() => {
@@ -98,7 +98,8 @@ export default function CartPage(props) {
 
     //onSubmit={onChangeInputs}
 
-
+    let celular = parametros && parametros[0].celular
+    let newCel = "55"+ celular
 
     //action="https://api.staticforms.xyz/submit" method="POST" 
     //<input type="hidden" name="accessKey" value="db9a9f30-9b38-4e8f-ab57-c41aa602fc62" />
@@ -130,7 +131,7 @@ export default function CartPage(props) {
                         <div className="form-btn-container-contact-section-2">
 
 
-                            <a className="tag-a" href={`https://api.whatsapp.com/send?phone=${parseFloat(parametros && parametros[0].celular)}&text=Olá! Gostária de solicitar orçamento do(s) produto(s) ${pedido}.`}
+                            <a className="tag-a" href={`https://api.whatsapp.com/send?phone=${parseFloat(newCel)}&text=Olá! Gostária de solicitar orçamento do(s) produto(s) ${pedido}.`}
                                 target="_blank" rel="noreferrer">
                                 <div className="btns-send-container-contact-section-2">
                                     <div onClick={() => navigate(`/produtos`)} className="btn-send-contact-section-2">SOLICITAR ORÇAMENTO</div>

@@ -38,10 +38,10 @@ app.get('*', function (request, response) {
 });
 */
 
-const server = app.listen(process.env.PORT || 3003, () => {
+const server = app.listen(process.env.PORT || 21046, () => {
   if (server) {
     const address = server.address() as AddressInfo;
-    console.log(`Servidor rodando em http://localhost:${address.port}`);
+    console.log(`Servidor rodando em ${address.port}`);
   } else {
     console.error(`Falha ao rodar o servidor.`);
   }

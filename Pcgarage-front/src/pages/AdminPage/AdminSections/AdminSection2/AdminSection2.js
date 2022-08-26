@@ -5,7 +5,7 @@ import SubSection1Admin2 from "./SubSectionAdmin2/SubSection1Admin2";
 import SubSection2Admin2 from "./SubSectionAdmin2/SubSection2Admin2";
 import SubSection3Admin2 from "./SubSectionAdmin2/SubSection3Admin2";
 import SubSection4Admin2 from "./SubSectionAdmin2/SubSection4Admin2";
-//import arrow from "../../../../images/arrow.png"
+
 
 
 export default function AdminSection2() {

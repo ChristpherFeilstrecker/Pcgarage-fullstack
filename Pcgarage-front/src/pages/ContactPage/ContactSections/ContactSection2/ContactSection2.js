@@ -31,7 +31,7 @@ export default function ContactSection2() {
     
     const useRequestData = (url) => {
         const [data, setData] = useState();
-        let urlLink = url
+        let urlLink = url+"?req="+ new Date().getTime()
 
         useEffect((url) => {
             axios
@@ -50,7 +50,6 @@ export default function ContactSection2() {
 
     const parametros = useRequestData(BASE_URL + "/informacoes")
 
-    //console.log('PARAMETROS',parametros)
     const [form, onChange, clear] = useForm({ name: "",email: "", celPhone: "",phone: "" , message: "" })
 
     const onChangeInputs = (ev) => {
