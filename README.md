@@ -1,7 +1,9 @@
 
 <h1 align="center" id="top">Projeto Pcgarage: <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvk4BlWIeaN5k0aL-4XNShU07q_YUJj6allV8_Xa31HIytUd7Vis_gzTitsniVIoqqWUs&usqp=CAU" width="50></h1>
+  </p>
 
 <br />
+  
 <p align="center">
   <a href="#sobre">Sobre</a> &#xa0; | &#xa0; 
   <a href="#surge">Surge</a> &#xa0; | &#xa0;
