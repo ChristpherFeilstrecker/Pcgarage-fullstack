@@ -34,7 +34,7 @@ export default function AssistancePage() {
 let listVideos = videos && videos
 .map((video)=>{
 return<div key={video.id} className="video-container">
-<iframe width="380" height="200" src={video.url} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+<iframe className="video" width="380" height="200" src={video.url} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
 <div className="title-video-container">{video.nome}</div>
 <div className="text-video-container">{video.descricao}</div>
 </div>

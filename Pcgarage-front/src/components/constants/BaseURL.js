@@ -1,8 +1,9 @@
 export const BASE_URL = 
-"https://lojapcgarage.com.br/app"
+"http://lojapcgarage.com.br/app"
 //"http://localhost:21046/app"
 //"https://pcgarage-api.herokuapp.com/app"
 
+/*
 if (window.location.protocol == 'http:') {
       
     console.log("you are accessing us via "
@@ -18,3 +19,4 @@ else if
         console.log("you are accessing us via"
             + " our secure HTTPS protocol.");
     }
+*/

@@ -241,5 +241,9 @@ padding: 2vw 0;
 }
 
 @media (max-width: 550px) {
-
+    .rigth-box-contact-section-2{
+        width: 90%;
+        display: grid;
+        grid-template-columns: 1fr ;
+    }
 }

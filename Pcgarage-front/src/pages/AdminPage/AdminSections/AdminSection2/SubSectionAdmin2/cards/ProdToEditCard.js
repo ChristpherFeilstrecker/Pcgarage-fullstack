@@ -69,7 +69,7 @@ export default function ProdToEditCard(props) {
 
     const EditDestaquesBD = (body) => {
         
-        EditRequestData("https://lojapcgarage.com.br/app" + "/editardestaque", body)
+        EditRequestData(BASE_URL + "/editardestaque", body)
 
         document.getElementById("inputFile").value = "";
         setMessage("Destaque editado com sucesso");

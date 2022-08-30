@@ -199,3 +199,23 @@ input {
     }
  
 }
+
+@media (max-width: 430px) {
+    .form-container-section-4 {
+        width: 70vw;
+        padding: 6vw 5vw;
+        box-shadow: 0 0 1em var(--box-shadow);
+        height: 80vw;
+        align-items: center;
+    }
+
+    .btn-send-section-4{
+        padding:1.5vw 3vw;
+        border:inherit;
+        letter-spacing: 0.3vw;
+        font-weight: 400;
+        background-color: var(--blue-weak);
+        transition: 0.3s all ease;
+    }
+
+}

@@ -133,13 +133,13 @@ export default function CartPage(props) {
 
                             <a className="tag-a" href={`https://api.whatsapp.com/send?phone=${parseFloat(newCel)}&text=Olá! Gostária de solicitar orçamento do(s) produto(s) ${pedido}.`}
                                 target="_blank" rel="noreferrer">
-                                <div className="btns-send-container-contact-section-2">
+                                <div className="btns-send-container-contact-sec-2">
                                     <div onClick={() => navigate(`/produtos`)} className="btn-send-contact-section-2">SOLICITAR ORÇAMENTO</div>
                                 </div>
                             </a>
 
 
-                            <div className="btns-send-container-contact-section-2">
+                            <div className="btns-send-container-contact-sec-2">
                                 <button onClick={() => navigate(`/produtos`)} className="btn-send-contact-section-2">CONTINUAR COMPRANDO</button>
                             </div>
                         </div>

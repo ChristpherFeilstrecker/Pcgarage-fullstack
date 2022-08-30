@@ -18,7 +18,7 @@
     background-color: white;
     margin-top: 90px;
     margin-left: 15px;
-    width: 21vw;
+    width: 25rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,6 +41,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .category-sector-1 {
@@ -50,7 +51,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 21vw;
+    width: 25rem;
     transition: 0.2s all ease;
 }
 
@@ -364,7 +365,7 @@
   
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
 
     #productsPage {
         display: flex;

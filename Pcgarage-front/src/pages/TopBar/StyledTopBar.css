@@ -310,3 +310,26 @@
         transition: 1s all ease;
     }
 }
+
+@media (max-width: 370px) {
+    .nav-menu-container {
+        background-color: white;
+        margin-top: 17vh;
+        margin-left: -35vh;
+        width: 280px;
+        height: 90vh;
+        display: flex;
+        transition: 1s all ease;
+    }
+
+    .hide-nav-menu-container {
+        visibility: visible;
+        background-color: white;
+        margin-top: 17vh;
+        margin-left: -33rem;
+        width: 320px;
+        height: 90vh;
+        display: flex;
+        transition: 1s all ease;
+    }
+}

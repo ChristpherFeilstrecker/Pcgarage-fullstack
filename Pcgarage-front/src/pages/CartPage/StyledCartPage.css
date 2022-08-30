@@ -157,6 +157,10 @@ padding-top: 180px;
         justify-content: center;
         flex-direction: column;
     }
+
+    .btn-send-contact-section-2{
+        font-size: 2vw;
+    }
 }
 
 @media (max-width: 900px) {
@@ -203,4 +207,52 @@ padding-top: 180px;
     }
 
 
+}
+
+@media (max-width: 500px) {
+    .form-btn-container-contact-section-2{
+        
+        display: flex;
+        flex-direction: column;
+    }
+
+    .btn-drain-products-cart-page{
+        font-size: 3vw;
+    }
+
+    .cart-page{
+        padding-top: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 35px;
+        }
+
+        .title-my-car-cart-page{
+            font-size: 1rem;
+            padding: 1rem 0;
+            font-family: "Helvetica Neue";
+        }
+
+        .products-container-cart-page{
+            margin-top: 5px;
+            width: 100%;
+            color: var(--grey-text);
+            padding: 0rem 0;
+            font-size: 2rem;
+        }
+
+        .add-to-car-btn-text{
+            font-size: 1rem;
+        }
+
+        .product-container-cart-products{
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+       
 }

@@ -20,7 +20,6 @@
     border-color: var(--border);
     margin-left: 10rem;
     width: 60%;
-    
     display: flex;
     padding: 2rem;
     justify-content: center;
@@ -129,6 +128,17 @@
 
     .rigth-box-contact-section-2{
         margin-top: 3rem;
+    }
+
+    .container-products-detail-products-page{
+        border-radius: 1rem;
+        border-width: thin;
+        border-style: solid;
+        border-color: var(--border);
+        width: 80%;
+        display: flex;
+        padding: 2rem;
+        justify-content: center;
     }
 }
 
